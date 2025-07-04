@@ -511,6 +511,75 @@ footer p {
     box-shadow: 0 6px 24px rgba(26,95,63,0.18);
 }
 
+/* تحسين تنسيقات الأزرار في القوالب */
+.result-card .submit-btn,
+.result-card .payment-btn,
+.result-card .confirm-btn {
+    display: inline-block;
+    width: auto !important;
+    min-width: 180px;
+    margin: 20px auto 0 auto;
+    padding: 15px 40px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(26,95,63,0.10);
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+.result-card .submit-btn {
+    background: linear-gradient(90deg, #1a5f3f 60%, #388e3c 100%);
+    color: #fff;
+    border: 2px solid #1a5f3f;
+}
+.result-card .submit-btn:hover {
+    background: #144a30;
+    color: #ffc107;
+}
+.result-card .payment-btn {
+    background: linear-gradient(90deg, #ffc107 60%, #ffe082 100%);
+    color: #1a5f3f;
+    border: 2px solid #ffc107;
+}
+.result-card .payment-btn:hover {
+    background: #e0a800;
+    color: #fff;
+}
+.result-card .confirm-btn {
+    background: linear-gradient(90deg, #1a5f3f 60%, #388e3c 100%);
+    color: #fff;
+    border: 2px solid #1a5f3f;
+}
+.result-card .confirm-btn:hover {
+    background: #144a30;
+    color: #ffc107;
+}
+
+/* تقليل التباعد بين عناصر بيانات الطالبة */
+.result-card .student-info {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 20px;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+.result-card .info-item {
+    padding: 6px 0;
+    border-bottom: 1px dashed #eee;
+    font-size: 17px;
+}
+.result-card .info-item label {
+    font-size: 16px;
+}
+.result-card .info-item span {
+    font-size: 16px;
+}
+@media (max-width: 768px) {
+    .result-card .student-info {
+        grid-template-columns: 1fr;
+        gap: 8px 0;
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     header {
