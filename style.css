@@ -1,0 +1,587 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl; /* Right-to-left for Arabic */
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    background-color: #1a5f3f; /* Dark green */
+    color: #fff;
+    padding: 15px 0;
+    border-bottom: 5px solid #ffc107; /* Gold accent */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+header .logo img {
+    height: 60px;
+    width: auto;
+}
+
+header .logo h1 {
+    font-size: 28px;
+    margin: 0;
+    color: #ffc107; /* Gold */
+}
+
+header .logo p {
+    font-size: 16px;
+    margin: 0;
+    color: #fff;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 17px;
+    transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: #ffc107; /* Gold */
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(rgba(26, 95, 63, 0.9), rgba(26, 95, 63, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hex" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 5 0 L 10 2.88675 V 8.66025 L 5 11.547 L 0 8.66025 V 2.88675 Z" fill="%232e7d32" /></pattern></defs><rect width="100%" height="100%" fill="url(%23hex)" /></svg>') repeat;
+    background-size: 200px;
+    color: #fff;
+    text-align: center;
+    padding: 80px 0;
+    border-bottom: 5px solid #ffc107;
+}
+
+.hero-section h2 {
+    font-size: 42px;
+    margin-bottom: 20px;
+    color: #ffc107;
+}
+
+.hero-section p {
+    font-size: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Services Section */
+.services-section {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+}
+
+.service-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.service-card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.service-card .icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+    color: #1a5f3f; /* Dark green */
+}
+
+.service-card h3 {
+    font-size: 28px;
+    color: #1a5f3f;
+    margin-bottom: 15px;
+}
+
+.service-card p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+
+.service-card .submit-btn {
+    background-color: #ffc107; /* Gold */
+    color: #1a5f3f; /* Dark green */
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+}
+
+.service-card .submit-btn:hover {
+    background-color: #e0a800; /* Darker gold */
+    transform: translateY(-2px);
+}
+
+/* Forms Section */
+.forms-section {
+    padding: 60px 0;
+    background-color: #f0f2f5;
+}
+
+.form-container {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.form-container h3 {
+    font-size: 32px;
+    color: #1a5f3f;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    text-align: right;
+}
+
+.form-group label {
+    display: block;
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #555;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="password"]:focus {
+    border-color: #1a5f3f; /* Dark green */
+    outline: none;
+}
+
+.form-container .submit-btn {
+    background-color: #1a5f3f; /* Dark green */
+    color: #fff;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+}
+
+.form-container .submit-btn:hover {
+    background-color: #144a30; /* Darker green */
+    transform: translateY(-2px);
+}
+
+/* Results Section */
+.results-section {
+    padding: 60px 0;
+    background-color: #f0f2f5;
+}
+
+.result-card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.result-header {
+    margin-bottom: 30px;
+}
+
+.result-header h3 {
+    font-size: 36px;
+    color: #1a5f3f;
+    margin-bottom: 10px;
+}
+
+.result-header .status-accepted {
+    font-size: 24px;
+    color: #27ae60; /* Green for success */
+    font-weight: bold;
+}
+
+.student-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    text-align: right;
+    margin-bottom: 40px;
+    border-top: 1px solid #eee;
+    padding-top: 30px;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-item label {
+    font-weight: bold;
+    color: #555;
+    font-size: 17px;
+}
+
+.info-item span {
+    color: #333;
+    font-size: 17px;
+}
+
+/* Payment Invoice */
+.payment-invoice {
+    margin-bottom: 40px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 30px;
+    background-color: #fcfcfc;
+}
+
+.invoice-header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+.invoice-header h4 {
+    font-size: 30px;
+    color: #1a5f3f;
+    margin-bottom: 10px;
+}
+
+.invoice-header p {
+    font-size: 18px;
+    color: #666;
+}
+
+.invoice-details {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    text-align: right;
+    margin-bottom: 30px;
+}
+
+.invoice-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.invoice-item span {
+    font-size: 17px;
+    color: #333;
+}
+
+.invoice-item span:first-child {
+    font-weight: bold;
+    color: #555;
+}
+
+.invoice-total {
+    background-color: #e8f5e9; /* Light green */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.invoice-total p {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1a5f3f;
+    margin-bottom: 10px;
+}
+
+.invoice-total .total-amount {
+    font-size: 32px;
+    color: #27ae60; /* Success green */
+}
+
+.bank-info {
+    margin-bottom: 40px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 30px;
+    background-color: #fcfcfc;
+}
+
+.bank-info h5 {
+    font-size: 24px;
+    color: #1a5f3f;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.bank-details {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    text-align: right;
+}
+
+.bank-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.bank-item span {
+    font-size: 17px;
+    color: #333;
+}
+
+.bank-item span:first-child {
+    font-weight: bold;
+    color: #555;
+}
+
+.upload-section {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.upload-area {
+    border: 2px dashed #ccc;
+    border-radius: 15px;
+    padding: 40px;
+    cursor: pointer;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    background-color: #fdfdfd;
+}
+
+.upload-area:hover {
+    border-color: #1a5f3f;
+    background-color: #f0f8f0;
+}
+
+.upload-area .upload-icon {
+    font-size: 80px;
+    color: #1a5f3f;
+    margin-bottom: 15px;
+}
+
+.upload-area p {
+    font-size: 20px;
+    color: #555;
+    font-weight: bold;
+}
+
+.upload-area input[type="file"] {
+    display: none;
+}
+
+/* Footer */
+footer {
+    background-color: #1a5f3f; /* Dark green */
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 15px;
+    border-top: 5px solid #ffc107; /* Gold accent */
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+/* Payment and Confirmation Buttons */
+.payment-btn {
+    background: linear-gradient(90deg, #ffc107 60%, #ffe082 100%);
+    color: #1a5f3f;
+    border: 2px solid #ffc107;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(255,193,7,0.10);
+    padding: 15px 40px;
+    margin-top: 20px;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.payment-btn:hover {
+    background: #e0a800;
+    color: #fff;
+    box-shadow: 0 6px 24px rgba(255,193,7,0.18);
+}
+
+.confirm-btn {
+    background: linear-gradient(90deg, #1a5f3f 60%, #388e3c 100%);
+    color: #fff;
+    border: 2px solid #1a5f3f;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(26,95,63,0.10);
+    padding: 15px 40px;
+    margin-top: 20px;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.confirm-btn:hover {
+    background: #144a30;
+    color: #ffc107;
+    box-shadow: 0 6px 24px rgba(26,95,63,0.18);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    header .logo {
+        margin-bottom: 15px;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .hero-section h2 {
+        font-size: 32px;
+    }
+
+    .hero-section p {
+        font-size: 18px;
+    }
+
+    .service-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .form-container,
+    .result-card {
+        padding: 30px;
+    }
+
+    .form-container h3 {
+        font-size: 28px;
+    }
+
+    .result-header h3 {
+        font-size: 30px;
+    }
+
+    .result-header .status-accepted {
+        font-size: 20px;
+    }
+
+    .student-info {
+        grid-template-columns: 1fr;
+    }
+
+    .invoice-header h4 {
+        font-size: 26px;
+    }
+
+    .invoice-total .total-amount {
+        font-size: 28px;
+    }
+
+    .bank-info h5 {
+        font-size: 20px;
+    }
+
+    .upload-area {
+        padding: 30px;
+    }
+
+    .upload-area .upload-icon {
+        font-size: 60px;
+    }
+
+    .upload-area p {
+        font-size: 18px;
+    }
+}
+

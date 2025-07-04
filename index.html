@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة القبول الإلكتروني - جامعة الملك فيصل</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="kfu-logo.png" type="image/png">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="kfu-logo.png" alt="شعار جامعة الملك فيصل">
+                <h1>بوابة القبول الإلكتروني</h1>
+                <p>جامعة الملك فيصل</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" onclick="goHome()">الرئيسية</a></li>
+                    <li><a href="#">عن الجامعة</a></li>
+                    <li><a href="#">اتصل بنا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="container">
+                <h2>مرحباً بكم في بوابة القبول والتسجيل</h2>
+                <p>يمكنكم من خلال هذه البوابة الاستعلام عن حالة القبول وإتمام إجراءات التسجيل</p>
+            </div>
+        </section>
+
+        <section id="services" class="services-section">
+            <div class="container">
+                <div class="service-cards">
+                    <div class="service-card" id="inquiry-card">
+                        <div class="icon">🔍</div>
+                        <h3>الاستعلام عن القبول</h3>
+                        <p>استعلم عن حالة طلب القبول الخاص بك</p>
+                        <button class="submit-btn" onclick="showInquiryForm()">استعلام</button>
+                    </div>
+                    <div class="service-card" id="confirmation-card">
+                        <div class="icon">✅</div>
+                        <h3>تأكيد القبول</h3>
+                        <p>قم بتأكيد قبولك وإتمام إجراءات التسجيل</p>
+                        <button class="submit-btn" onclick="alert(\'يرجى البدء بالاستعلام عن القبول أولاً\')">تأكيد القبول</button>
+                    </div>
+                    <div class="service-card" id="payment-card">
+                        <div class="icon">💳</div>
+                        <h3>السداد</h3>
+                        <p>عرض فاتورة السداد ورفع إيصال الدفع</p>
+                        <button class="submit-btn" onclick="alert(\'يرجى البدء بالاستعلام عن القبول أولاً\')">السداد</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="forms-section" class="forms-section hidden">
+            <div class="container">
+                <div class="form-container" id="inquiry-form">
+                    <h3>الاستعلام عن القبول</h3>
+                    <div class="form-group">
+                        <label for="inquiry-id">رقم الطلب</label>
+                        <input type="text" id="inquiry-id" name="applicationNumber" placeholder="أدخل رقم الطلب">
+                    </div>
+                    <div class="form-group">
+                        <label for="inquiry-phone">رقم الجوال</label>
+                        <input type="text" id="inquiry-phone" name="phoneNumber" placeholder="أدخل رقم الجوال">
+                    </div>
+                    <button type="button" class="submit-btn" onclick="checkAdmission()">استعلام</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="results-section" class="results-section hidden">
+            <div class="container">
+                <!-- Admission result, confirmation success, or payment invoice will be loaded here by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 جامعة الملك فيصل - جميع الحقوق محفوظة</p>
+            <p>تصميم وتطوير عمادة التعلم الإلكتروني وتقنية المعلومات</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
