@@ -6,7 +6,7 @@ const studentData = {
         major: "الإدارة العامة",
         status: "مقبولة",
         admissionDate: "2025/07/04",
-        phone: "0501234567",
+        phone: "0503192706",
         fees: {
             tuition: 2000,
             registration: 500,
