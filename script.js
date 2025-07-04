@@ -1,6 +1,6 @@
 // Sample student data (in real application, this would come from a backend database)
 const studentData = {
-    "25612515": {
+    "256112515": {
         name: "وضحاء غازي بنيه الحربي",
         degree: "دبلوم",
         major: "الإدارة العامة",
