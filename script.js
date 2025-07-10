@@ -1,16 +1,45 @@
 // Sample student data (in real application, this would come from a backend database)
 const studentData = {
-    "256112515": {
+    "1234567890": {
         name: "وضحاء غازي بنيه الحربي",
         degree: "دبلوم",
         major: "الإدارة العامة",
         status: "مقبولة",
-        admissionDate: "2025/07/04",
-        phone: "0503192706",
+        admissionDate: "2025/01/15",
+        phone: "0501234567",
         fees: {
-            tuition: 2000,
+            tuition: 5000,
             registration: 500,
-            total: 2500
+            books: 300,
+            total: 5800
+        }
+    },
+    "1145181531": {
+        name: "أحمد منير توفيق الأيوبي",
+        degree: "بكالوريس",
+        major: "فيزياء",
+        status: "مقبول",
+        admissionDate: "2025/01/15",
+        phone: "0566962545",
+        fees: {
+            tuition: 6000,
+            registration: 600,
+            books: 400,
+            total: 7000
+        }
+    },
+    "1126986692": {
+        name: "نورة عبدالعزيز سليمان النوشان",
+        degree: "بكالوريس",
+        major: "إدارة أعمال",
+        status: "مقبولة",
+        admissionDate: "2025/07/10",
+        phone: "0593160642",
+        fees: {
+            tuition: 1200,
+            registration: 0,
+            books: 0,
+            total: 1200
         }
     }
 };
@@ -52,7 +81,7 @@ function checkAdmission() {
     const phone = document.getElementById("inquiry-phone").value;
 
     if (!id || !phone) {
-        alert("الرجاء إدخال رقم الطلب ورقم الجوال.");
+        alert("الرجاء إدخال رقم الهوية ورقم الجوال.");
         return;
     }
 
@@ -170,17 +199,21 @@ function showPaymentInvoice() {
                 </div>
                 <div class="invoice-details">
                     <div class="invoice-item">
-                        <span>بقية رسوم التسجيل:</span>
-                        <span>500 ريال</span>
+                        <span>الرسوم الدراسية:</span>
+                        <span>${currentStudent.fees.tuition} ريال</span>
                     </div>
                     <div class="invoice-item">
-                        <span>قسط الرسوم الدراسية:</span>
-                        <span>2000 ريال</span>
+                        <span>رسوم التسجيل:</span>
+                        <span>${currentStudent.fees.registration} ريال</span>
+                    </div>
+                    <div class="invoice-item">
+                        <span>رسوم الكتب:</span>
+                        <span>${currentStudent.fees.books} ريال</span>
                     </div>
                 </div>
                 <div class="invoice-total">
                     <p>المجموع الكلي</p>
-                    <p class="total-amount">2500 ريال سعودي</p>
+                    <p class="total-amount">${currentStudent.fees.total} ريال سعودي</p>
                 </div>
             </div>
 
@@ -189,25 +222,30 @@ function showPaymentInvoice() {
                 <div class="bank-details">
                     <div class="bank-item">
                         <span>اسم البنك:</span>
-                        <span>البنك  الراجحي</span>
+                        <span>${currentStudent.fees.total === 1200 ? 'بنك الراجحي' : 'البنك الأهلي السعودي'}</span>
                     </div>
                     <div class="bank-item">
                         <span>رقم الحساب:</span>
-                        <span>141608016024333</span>
+                        <span>${currentStudent.fees.total === 1200 ? '140000010006086213309' : '123456789012'}</span>
                     </div>
+                    <div class="bank-item">
+                        <span>الآيبان:</span>
+                        <span>${currentStudent.fees.total === 1200 ? 'SA7980000140608016213309' : 'SA1234567890123456789012'}</span>
+                    </div>
+                   
                 </div>
             </div>
 
             <div class="upload-section">
                 <h5>رفع إيصال السداد</h5>
-                <div class="upload-area" onclick="document.getElementById('receipt-upload').click()">
+                <div class="upload-area" onclick="document.getElementById(\'receipt-upload\').click()">
                     <input type="file" id="receipt-upload" accept=".pdf,.jpg,.png" onchange="displayFileName()">
                     <div class="upload-icon">📄</div>
                     <p>اضغط هنا لرفع إيصال السداد</p>
                     <p style="font-size: 14px; color: #999;">الملفات المدعومة: PDF, JPG, PNG (حد أقصى 5 ميجابايت)</p>
                     <p id="file-name" style="font-size: 16px; color: #1a5f3f; font-weight: bold; margin-top: 10px;"></p>
                 </div>
-                <button class="submit-btn mt-20 payment-btn" onclick="submitPayment()">إرسال إيصال السداد</button>
+                <button class="submit-btn mt-20" onclick="submitPayment()">إرسال إيصال السداد</button>
             </div>
         </div>
     `;
