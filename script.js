@@ -1,12 +1,12 @@
 // Sample student data (in real application, this would come from a backend database)
 const studentData = {
-    "1234567890": {
+    "256112515": {
         name: "وضحاء غازي بنيه الحربي",
         degree: "دبلوم",
         major: "الإدارة العامة",
         status: "مقبولة",
         admissionDate: "2025/01/15",
-        phone: "0501234567",
+        phone: "0503192706",
         fees: {
             tuition: 5000,
             registration: 500,
