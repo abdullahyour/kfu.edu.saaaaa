@@ -251,237 +251,152 @@
             }, 1500);
     
 </script>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>نموذج تسجيل الطلاب - جامعة الملك فيصل</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 <style>
-:root {
-  --primary-green: #115c3a;
-  --accent-gold: #c8a041;
-  --bg-light: #f7faf8;
-  --card: #ffffff;
-  --shadow: 0 8px 20px rgba(0,0,0,0.1);
-  --muted: #5a645a;
-  --error: #b91c1c;
-  --success: #059669;
+:root{
+  --green-royal: #0b6b44;
+  --green-dark: #08583a;
+  --muted: #6b6b6b;
+  --card-bg: #ffffff;
+  --danger: #c33;
+  --success: #2a9d63;
+  --max-width: 1200px;
 }
-
-body {
-  font-family: 'Noto Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
-  margin: 0;
-  background: linear-gradient(135deg, var(--primary-green), var(--accent-gold));
-  min-height: 100vh;
-  color: #222;
-}
-
-header {
-  text-align: center;
-  padding: 25px 10px;
-  color: white;
-}
-header img {
-  height: 90px;
-}
-header h1 {
-  font-size: 26px;
-  margin-top: 10px;
-}
-
-.container {
-  max-width: 950px;
-  margin: 30px auto;
-  background: var(--card);
-  border-radius: 16px;
-  box-shadow: var(--shadow);
-  padding: 25px;
-}
-
-.btn {
-  display: inline-block;
-  background: linear-gradient(90deg, var(--primary-green), #1a7a47);
-  color: white;
-  border: none;
-  padding: 12px 22px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
-  font-size: 15px;
-}
-.btn:hover { opacity: 0.9; }
-
-.row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-}
-@media (max-width:700px) { .row { grid-template-columns: 1fr; } }
-
-label {
-  font-weight: 700;
-  font-size: 14px;
-  margin-bottom: 6px;
-  display: block;
-}
-input, select {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-}
-.card {
-  margin-bottom: 25px;
-}
-.card h2 {
-  color: var(--primary-green);
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-  padding-bottom: 6px;
-  margin-bottom: 15px;
-}
-.file-section {
-  background: #f9faf9;
-  border-radius: 10px;
-  padding: 15px;
-  border: 1px solid #e5e9e6;
-  margin-bottom: 15px;
-}
-.success-msg {
-  background: rgba(5,150,105,0.1);
-  color: var(--success);
-  padding: 12px;
-  border-radius: 8px;
-  font-weight: bold;
-  margin-top: 15px;
-  text-align: center;
-}
-#error-msg {
-  color: var(--error);
-  font-weight: bold;
-  margin-top: 8px;
-  text-align: center;
-}
+*{box-sizing:border-box;font-family: "Segoe UI", Tahoma, Arial, "Helvetica Neue", sans-serif}
+body{margin:0;background:linear-gradient(180deg,#f6fbf7 0%,#ffffff 100%);color:#0a0a0a;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+.container{max-width: var(--max-width);margin:24px auto;padding:18px;}
+#openFormBtn{background:var(--green-royal);color:#fff;border:none;padding:12px 18px;border-radius:10px;font-weight:600;cursor:pointer;box-shadow:0 6px 18px rgba(11,107,68,0.18);}
+#openFormBtn:active{transform:translateY(1px);}
+.form-wrap{margin-top:18px;background:var(--card-bg);border-radius:12px;box-shadow:0 8px 30px rgba(10,10,10,0.06);overflow:hidden;display:none;min-height:520px;}
+.form-grid{display:grid;grid-template-columns:1fr 420px;gap:0;min-height:520px;}
+.col-right{padding:28px 34px;}
+h2.title{margin:0 0 8px 0;color:var(--green-dark);font-size:20px;font-weight:700;}
+p.subtitle{margin:0 0 18px 0;color:var(--muted);}
+.section{margin-bottom:18px;padding:12px 0;border-bottom:1px solid #f0f0f0;}
+.section:last-child{border-bottom:none;}
+.row{display:flex;gap:12px;margin-bottom:10px;align-items:center;}
+.row.col-2 .field{flex:1;}
+label{display:block;font-size:13px;margin-bottom:6px;color:#222;font-weight:600;}
+input[type="text"], input[type="email"], input[type="date"], select, input[type="number"]{width:100%;padding:10px 12px;border:1px solid #e2e2e2;border-radius:8px;background:#fbfbfb;outline:none;font-size:14px;}
+input[type="file"]{font-size:13px;}
+textarea{width:100%;min-height:80px;padding:10px 12px;border-radius:8px;border:1px solid #eaeaea;resize:vertical;}
+.field{width:100%;}
+.col-left{background: linear-gradient(180deg, rgba(11,107,68,0.05), rgba(11,107,68,0.02));padding:24px;border-left:1px solid #f0f0f0;}
+.card{background: #fff;padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(11,107,68,0.04);margin-bottom:14px;}
+.preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.preview-img{width:100%;height:120px;border-radius:8px;background:#f7f7f7;display:flex;align-items:center;justify-content:center;font-size:12px;color:#9b9b9b;overflow:hidden;}
+.small{font-size:12px;color:var(--muted);}
+.btn{display:inline-block;padding:10px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:700;}
+.btn-primary{background:var(--green-royal);color:#fff;box-shadow:0 8px 20px rgba(11,107,68,0.12);}
+.btn-light{background:#f3f3f3;color:#222;border:1px solid #eaeaea;}
+.note{font-size:13px;color:var(--muted);margin-top:8px;}
+.error{color:var(--danger);font-size:13px;margin-top:6px;display:none;}
+.success-modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(0.98);background:#fff;border-radius:12px;box-shadow:0 20px 60px rgba(3,3,3,0.18);padding:24px 28px;z-index:9999;display:none;width:420px;text-align:center;}
+.success-modal h3{margin:0 0 8px 0;color:var(--green-dark);}
+.success-modal p{color:#444;margin:0 0 14px 0;}
+@media (max-width:980px){.form-grid{grid-template-columns:1fr;}.col-left{order:2;}.col-right{order:1;}}
 </style>
 </head>
-
 <body>
-
-<header>
-  <img src="https://upload.wikimedia.org/wikipedia/ar/f/f4/King_Faisal_University_Logo.png" alt="شعار جامعة الملك فيصل">
-  <h1>جامعة الملك فيصل</h1>
-</header>
-
-<div class="container" id="login-section">
-  <h2 style="text-align:center;color:var(--primary-green);">تسجيل الدخول</h2>
-  <div style="text-align:center;margin:25px 0;">
-    <button class="btn" id="newStudentBtn"><i class="fas fa-user-graduate"></i> طالب جديد</button>
-  </div>
+<div class="container">
+<button id="openFormBtn">طالب جديد</button>
+<div id="registrationForm" class="form-wrap" aria-hidden="true" role="region" aria-label="نموذج تسجيل الطلاب">
+<div class="form-grid">
+<div class="col-right">
+<h2 class="title">نموذج تسجيل الطلاب - جامعة الملك فيصل</h2>
+<p class="subtitle">املئي البيانات المطلوبة بدقة. الحقول الموسومة بـ * مطلوبة.</p>
+<!-- بيانات شخصية -->
+<div class="section"><h4>البيانات الشخصية</h4>
+<div class="row col-2">
+<div class="field"><label>الاسم الكامل (رباعي) *</label><input id="fullName" type="text" placeholder="مثال: محمد بن علي بن خالد" required><div class="error" id="err_fullName">يجب إدخال الاسم الرباعي.</div></div>
+<div class="field"><label>نوع الجنس *</label><select id="gender" required><option value="">اختر...</option><option>ذكر</option><option>أنثى</option></select><div class="error" id="err_gender">اختر النوع.</div></div></div>
+<div class="row col-2"><div class="field"><label>الجنسية *</label><select id="nationality" required><option value="">اختر الجنسية...</option><option value="SA">سعودي / سعودية</option><option value="IN">هندي</option><option value="EG">مصري</option><option value="PK">باكستاني</option><option value="SY">سوري</option><option value="OTHER">دولية أخرى</option></select><div class="error" id="err_nationality">اختر الجنسية.</div></div>
+<div class="field"><label>رقم الهوية / رقم الإقامة *</label><input id="idNumber" type="text" placeholder="أدخل رقم الهوية أو رقم الإقامة" required><div class="error" id="err_idNumber">أدخل رقم الهوية أو رقم الإقامة.</div></div></div>
+<div class="row col-2"><div class="field"><label>تاريخ الميلاد (ميلادي)</label><input id="dob" type="date"></div><div class="field"><label>الحالة الاجتماعية</label><select id="marital"><option>أعزب/عزباء</option><option>متزوج/متزوجة</option><option>مطلق/مطلقة</option><option>أرمل/أرملة</option></select></div></div>
+<div class="row col-2"><div class="field" id="passportField" style="display:none;"><label>رقم الجواز</label><input id="passportNumber" type="text" placeholder="لغير السعوديين"></div><div class="field" id="iqamaExpiryField" style="display:none;"><label>تاريخ انتهاء الإقامة</label><input id="iqamaExpiry" type="date"></div></div>
 </div>
-
-<div class="container" id="form-section" style="display:none;">
-  <form id="studentForm">
-
-    <div class="card">
-      <h2>البيانات الشخصية</h2>
-      <div class="row">
-        <div><label>الاسم الكامل</label><input id="name" required></div>
-        <div><label>الاسم بالإنجليزية</label><input id="name_en" required></div>
-      </div>
-      <div class="row">
-        <div><label>رقم الهوية / الإقامة</label><input id="id_number" required></div>
-        <div><label>رقم الجوال</label><input id="phone" type="tel" placeholder="05xxxxxxxx" required></div>
-      </div>
-      <div class="row">
-        <div><label>البريد الإلكتروني</label><input id="email" type="email" required></div>
-        <div>
-          <label>الجنس</label>
-          <select id="gender" required><option value="">-- اختر --</option><option>ذكر</option><option>أنثى</option></select>
-        </div>
-      </div>
-      <div>
-        <label>الجنسية</label>
-        <select id="nationality" required>
-          <option value="">-- اختر الدولة --</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>البيانات الدراسية</h2>
-      <div class="row">
-        <div><label>الكلية</label><input id="college" required></div>
-        <div><label>التخصص</label><input id="major" required></div>
-      </div>
-      <label>الحالة الدراسية</label>
-      <select id="status" required>
-        <option value="">-- اختر --</option>
-        <option>طالب مستمر</option>
-        <option>خريج</option>
-        <option>متقدم جديد</option>
-      </select>
-    </div>
-
-    <div class="card">
-      <h2>رفع الملفات</h2>
-      <div class="file-section">
-        <label>رفع صورة الهوية</label>
-        <input type="file" id="id_upload" accept="image/*" required>
-      </div>
-      <div class="file-section">
-        <label>رفع صورة الشهادة</label>
-        <input type="file" id="certificate_upload" accept="image/*" required>
-      </div>
-    </div>
-
-    <div style="text-align:center;">
-      <button type="submit" class="btn">إرسال الطلب</button>
-      <div id="error-msg"></div>
-      <div id="success-msg" class="success-msg" style="display:none;">✅ تم استلام طلبك بنجاح!</div>
-    </div>
-
-  </form>
+<!-- بيانات التواصل -->
+<div class="section"><h4>بيانات التواصل</h4>
+<div class="row col-2"><div class="field"><label>رقم الجوال *</label><input id="phone" type="text" placeholder="05xxxxxxxx" required><div class="error" id="err_phone">أدخل رقم جوال صالح.</div></div>
+<div class="field"><label>البريد الإلكتروني *</label><input id="email" type="email" placeholder="example@mail.com" required><div class="error" id="err_email">أدخل بريدًا إلكترونيًا صالحًا.</div></div></div>
+<div class="row"><div class="field"><label>المدينة</label><input id="city" type="text" placeholder="المدينة"></div></div>
+<div class="row"><div class="field"><label>العنوان بالتفصيل</label><textarea id="address" placeholder="العنوان بالتفصيل"></textarea></div></div>
 </div>
-
+<!-- البيانات الأكاديمية -->
+<div class="section"><h4>البيانات الأكاديمية</h4>
+<div class="row col-2"><div class="field"><label>نوع المؤهل السابق *</label><select id="prevDegree" required><option value="">اختر...</option><option>ثانوي</option><option>دبلوم</option><option>بكالوريوس</option><option>ماجستير</option></select><div class="error" id="err_prevDegree">اختر نوع المؤهل.</div></div>
+<div class="field"><label>سنة التخرج *</label><input id="gradYear" type="number" placeholder="مثال: 2022" min="1900" max="2100" required><div class="error" id="err_gradYear">أدخل سنة تخرج صحيحة.</div></div></div>
+<div class="row"><div class="field"><label>اسم المدرسة / الجامعة السابقة</label><input id="prevInstitute" type="text"></div></div>
+<div class="row col-2"><div class="field"><label>النسبة / المعدل</label><input id="gpa" type="text" placeholder="مثال: 95%"></div>
+<div class="field"><label>التخصص المطلوب *</label><input id="desiredMajor" type="text" required><div class="error" id="err_desiredMajor">أدخل التخصص المطلوب.</div></div></div>
+<div class="row"><div class="field"><label>نوع الدراسة</label><select id="studyType"><option>انتظام</option><option>انتساب</option><option>تعليم عن بعد</option></select></div></div>
+</div>
+<!-- بيانات ولي الأمر -->
+<div class="section"><h4>بيانات ولي الأمر</h4>
+<div class="row col-2"><div class="field"><label>اسم ولي الأمر</label><input id="guardianName" type="text"></div>
+<div class="field"><label>رقم هوية/إقامة ولي الأمر</label><input id="guardianId" type="text"></div></div>
+<div class="row"><div class="field"><label>صلة القرابة</label><input id="guardianRelation" type="text" placeholder="مثال: والد/والدة"></div></div>
+<div class="row"><div class="field"><label>رقم جوال ولي الأمر</label><input id="guardianPhone" type="text"></div></div></div>
+<!-- رفع الملفات -->
+<div class="section"><h4>رفع الملفات (مع معاينة)</h4>
+<div class="row col-2"><div class="field"><label>صورة الهوية / الإقامة *</label><input id="fileId" type="file" accept="image/*,application/pdf" required><div class="error" id="err_fileId">يرجى رفع صورة الهوية أو الإقامة.</div></div>
+<div class="field"><label>صورة الشهادة *</label><input id="fileCertificate" type="file" accept="image/*,application/pdf" required><div class="error" id="err_fileCertificate">يرجى رفع صورة الشهادة.</div></div></div>
+<div class="row col-2"><div class="field"><label>صورة شخصية *</label><input id="filePhoto" type="file" accept="image/*" required><div class="error" id="err_filePhoto">يرجى رفع صورة شخصية.</div></div>
+<div class="field"><label>إيصال الدفع</label><input id="fileReceipt" type="file" accept="image/*,application/pdf"></div></div></div>
+<!-- الإقرار -->
+<div class="section"><div class="row"><label style="display:flex; align-items:center; gap:8px;"><input id="agree" type="checkbox" style="transform:scale(1.1);"> <span>أقر بأن جميع البيانات المدخلة صحيحة وأتحمل مسؤولية أي معلومات غير صحيحة. *</span></label><div class="error" id="err_agree">يجب الموافقة على الإقرار.</div></div></div>
+<!-- أزرار -->
+<div class="section" style="display:flex; gap:12px; align-items:center; justify-content:flex-start;">
+<button id="submitBtn" class="btn btn-primary">إرسال التسجيل</button>
+<button id="cancelBtn" class="btn btn-light">إلغاء</button>
+<div class="note">بعد الضغط تظهر رسالة نجاح رسمية (محاكاة)، لا يتم إرسال البيانات فعليًا.</div>
+</div>
+</div>
+<!-- العمود الأيسر -->
+<div class="col-left">
+<div class="card"><h4 style="margin:0 0 6px 0;">معاينة الملفات</h4>
+<div class="preview-grid" id="previewGrid">
+<div class="preview-img" id="previewId">هوية/إقامة<br><span class="small">لم يتم تحميل</span></div>
+<div class="preview-img" id="previewCert">شهادة<br><span class="small">لم يتم تحميل</span></div>
+<div class="preview-img" id="previewPhoto">صورة شخصية<br><span class="small">لم يتم تحميل</span></div>
+<div class="preview-img" id="previewReceipt">إيصال دفع<br><span class="small">لم يتم تحميل</span></div>
+</div></div>
+<div class="card"><h4 style="margin:0 0 6px 0;">تفاصيل الدفع البنكي</h4>
+<p class="small">بعد التحويل، يُرجى رفع إيصال الدفع في الحقل أدناه للتأكيد.</p>
+<div style="margin-top:8px;">
+<label>اسم البنك</label>
+<input id="bankName" type="text" value="البنك الأهلي" readonly>
+</div>
+<div style="margin-top:8px;">
+<label>رقم الحساب البنكي</label>
+<input id="bankAccount" type="text" value="SA1980000857608010276380" readonly>
+</div>
+<div style="margin-top:12px; display:flex; gap:8px;">
+<button id="copyAccountBtn" class="btn btn-light">نسخ رقم الحساب</button>
+<label for="fileReceipt" class="btn btn-primary" style="margin:0;cursor:pointer;">رفع إيصال الدفع</label>
+</div>
+<div id="payInstructions" style="display:none; margin-top:10px;" class="small">بعد التحويل، ارفقي إيصال الدفع في خانة "إيصال الدفع" أعلاه. تأكدي من تطابق اسم المحول مع بيانات الطالب.</div>
+</div>
+<div class="card"><h4 style="margin:0 0 6px 0;">ملخص سريع</h4>
+<p class="small" id="summaryText">لم يتم إدخال بيانات بعد.</p></div>
+</div>
+</div>
+</div>
+<div id="successModal" class="success-modal" role="dialog" aria-modal="true" aria-labelledby="succTitle">
+<h3 id="succTitle">تم استلام الطلب بنجاح</h3>
+<p>شكرًا لك! تم استلام بياناتك بنجاح. سيتم مراجعتها قريبا.</p>
+<button id="closeSuccess" class="btn btn-primary">حسناً</button>
+</div>
+</div>
 <script>
-const countries = ["السعودية","اليمن","مصر","الإمارات","الأردن","قطر","الكويت","البحرين","عُمان","سوريا","العراق","لبنان","فلسطين","تونس","الجزائر","المغرب","السودان","الصومال","ليبيا","موريتانيا","جيبوتي","تركيا","أمريكا","بريطانيا","كندا","فرنسا","ألمانيا","الهند","باكستان","إندونيسيا","ماليزيا","الفلبين","أفغانستان","إيران","تشاد","نيجيريا","إثيوبيا","إريتريا","أستراليا","الصين","اليابان","كوريا","روسيا","إيطاليا","إسبانيا","أوكرانيا","البرازيل","الأرجنتين","جنوب أفريقيا","دول أخرى"];
-const select = document.getElementById("nationality");
-countries.forEach(c => {
-  const opt = document.createElement("option");
-  opt.textContent = c;
-  select.appendChild(opt);
-});
-
-document.getElementById("newStudentBtn").addEventListener("click", ()=>{
-  document.getElementById("login-section").style.display = "none";
-  document.getElementById("form-section").style.display = "block";
-  window.scrollTo({top:0,behavior:'smooth'});
-});
-
-document.getElementById("studentForm").addEventListener("submit",(e)=>{
-  e.preventDefault();
-  const inputs = document.querySelectorAll("#studentForm input, #studentForm select");
-  let valid = true;
-  inputs.forEach(el => { if(!el.value) valid=false; });
-  const err = document.getElementById("error-msg");
-  const succ = document.getElementById("success-msg");
-  if(!valid){
-    err.textContent = "الرجاء تعبئة جميع الحقول المطلوبة.";
-    succ.style.display="none";
-  } else {
-    err.textContent="";
-    succ.style.display="block";
-    window.scrollTo({top:succ.offsetTop,behavior:'smooth'});
-  }
-});
-</script>
-
-</body>
-</html>
+const openFormBtn=document.getElementById('openFormBtn');
+const formWrap=document.getElementById('registrationForm');
+const
 </body>
 </html>
 
