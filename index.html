@@ -250,8 +250,8 @@
                 window.location.href = "academic_calendar.html";
             }, 1500);
     
-</script>                                                    </div>
-<!DOCTYPE html>
+</script>
+  <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -267,8 +267,8 @@
   --card: #ffffff;
   --shadow: 0 8px 20px rgba(0,0,0,0.08);
   --muted: #55606a;
-  --error: #d32f2f;
   --success: #059669;
+  --error: #d32f2f;
 }
 
 body {
@@ -324,12 +324,9 @@ input, select, textarea {
   width: 100%;
   padding: 10px;
   border-radius: 8px;
-  border: 1px solid #dfe8e3;
+  border: 1px solid #e6f0ea;
   font-size: 14px;
   background: #fff;
-}
-input:invalid, select:invalid {
-  border-color: #f0c2c2;
 }
 textarea { min-height: 100px; resize: vertical; }
 .row {
@@ -339,7 +336,6 @@ textarea { min-height: 100px; resize: vertical; }
   margin-bottom: 12px;
 }
 @media(max-width:700px){ .row { grid-template-columns:1fr; } }
-
 .btn {
   background: linear-gradient(90deg, var(--primary-green), #1a7a47);
   color: white;
@@ -407,19 +403,6 @@ textarea { min-height: 100px; resize: vertical; }
   border-left: 5px solid var(--error);
   color: var(--error);
 }
-#notification {
-  position: fixed;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--primary-green);
-  color: #fff;
-  padding: 12px 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  z-index: 9999;
-  display: none;
-}
 </style>
 </head>
 
@@ -431,59 +414,52 @@ textarea { min-height: 100px; resize: vertical; }
 </header>
 
 <div class="container">
-
-  <a href="#" class="btn" onclick="showNotificationAndForm()">
-    <i class="fas fa-user-graduate"></i> تقديم طلب جديد
-  </a>
-
-  <div id="notification">سيتم تحويلك إلى نموذج التسجيل…</div>
-
-  <div id="registration-form" style="display:none;">
+  <div id="registration-form">
     <div class="card">
     <form id="regForm" autocomplete="on" novalidate>
 
       <h2>1. البيانات الشخصية</h2>
       <div class="row">
-        <div><label>الاسم الكامل (كما في الهوية)</label><input required name="fullname"></div>
-        <div><label>الاسم بالإنجليزية (اختياري)</label><input name="fullname_en"></div>
+        <div><label>الاسم الكامل (كما في الهوية)</label><input required></div>
+        <div><label>الاسم بالإنجليزية (اختياري)</label><input></div>
       </div>
       <div class="row">
-        <div><label>رقم الهوية / الإقامة</label><input required name="id"></div>
-        <div><label>رقم الجوال</label><input required name="phone" pattern="05[0-9]{8}" placeholder="05xxxxxxxx"></div>
+        <div><label>رقم الهوية / الإقامة</label><input required></div>
+        <div><label>رقم الجوال</label><input placeholder="05xxxxxxxx" required pattern="05[0-9]{8}"></div>
       </div>
       <div class="row">
         <div><label>الجنس</label>
-          <select required name="gender"><option value="">-- اختر --</option><option>ذكر</option><option>أنثى</option></select>
+          <select required><option value="">-- اختر --</option><option>ذكر</option><option>أنثى</option></select>
         </div>
         <div><label>الجنسية</label>
-          <select required name="nationality">
+          <select required>
             <option value="">-- اختر --</option>
             <option>السعودية</option><option>اليمن</option><option>مصر</option>
             <option>الأردن</option><option>الإمارات</option><option>قطر</option><option>دول أخرى</option>
           </select>
         </div>
       </div>
-      <div><label>البريد الإلكتروني</label><input type="email" required name="email"></div>
+      <div><label>البريد الإلكتروني</label><input type="email" required></div>
 
       <h2>2. بيانات الدراسة / العمل</h2>
       <div class="row">
         <div><label>الكلية</label>
-          <select required name="college">
+          <select required>
             <option value="">-- اختر الكلية --</option>
             <option>كلية الطب</option><option>كلية الهندسة</option>
             <option>كلية إدارة الأعمال</option><option>كلية الحاسب الآلي</option>
           </select>
         </div>
-        <div><label>التخصص</label><input required name="major"></div>
+        <div><label>التخصص</label><input required></div>
       </div>
       <div><label>الحالة الدراسية</label>
-        <select required name="status"><option value="">-- اختر الحالة --</option><option>طالب مستمر</option><option>خريج</option><option>متقدم جديد</option></select>
+        <select required><option value="">-- اختر الحالة --</option><option>طالب مستمر</option><option>خريج</option><option>متقدم جديد</option></select>
       </div>
 
       <h2>3. العنوان وبيانات الطوارئ</h2>
       <div class="row">
-        <div><label>المدينة</label><input required name="city"></div>
-        <div><label>العنوان الكامل</label><input required name="address"></div>
+        <div><label>المدينة</label><input required></div>
+        <div><label>العنوان الكامل</label><input required></div>
       </div>
 
       <h2>4. رفع الملفات</h2>
@@ -516,16 +492,6 @@ textarea { min-height: 100px; resize: vertical; }
 </div>
 
 <script>
-function showNotificationAndForm(){
-  const notif=document.getElementById('notification');
-  notif.style.display='block';
-  setTimeout(()=>{
-    notif.style.display='none';
-    document.getElementById('registration-form').style.display='block';
-    document.getElementById('registration-form').scrollIntoView({behavior:"smooth"});
-  },1500);
-}
-
 const proof=document.getElementById('proof');
 const preview=document.getElementById('preview');
 proof.addEventListener('change',e=>{
@@ -550,7 +516,7 @@ const regForm=document.getElementById('regForm');
 sendBtn.addEventListener('click',()=>{
   msg.innerHTML='';
   if(!regForm.checkValidity()){
-    msg.innerHTML='<div class="error-msg">⚠️ الرجاء تعبئة جميع الحقول المطلوبة بشكل صحيح قبل الإرسال.</div>';
+    msg.innerHTML='<div class="error-msg">⚠️ يرجى تعبئة جميع الحقول المطلوبة قبل الإرسال.</div>';
     regForm.reportValidity();
     return;
   }
@@ -561,7 +527,7 @@ sendBtn.addEventListener('click',()=>{
 
 </body>
 </html>
-</script>
+    
 </body>
 </html>
 
