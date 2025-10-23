@@ -198,7 +198,61 @@
             const loadTime = performance.now();
             console.log(`تم تحميل الصفحة في ${Math.round(loadTime)} ميلي ثانية`);
         });
+ </script>
+<!-- تذييل الصفحة -->
+    <footer>...</footer>
+
+    <!-- الكود الجديد اللي بنضيفه -->
+    <script>
+        // دالة لعرض رسالة مؤقتة بالأعلى
+        function showMessage(text) {
+            const oldMsg = document.getElementById("tempMsg");
+            if (oldMsg) oldMsg.remove();
+
+            const msg = document.createElement("div");
+            msg.id = "tempMsg";
+            msg.textContent = text;
+            msg.style.position = "fixed";
+            msg.style.top = "10px";
+            msg.style.left = "50%";
+            msg.style.transform = "translateX(-50%)";
+            msg.style.background = "rgba(0, 102, 204, 0.9)";
+            msg.style.color = "#fff";
+            msg.style.padding = "10px 20px";
+            msg.style.borderRadius = "8px";
+            msg.style.fontFamily = "Arial, sans-serif";
+            msg.style.zIndex = "9999";
+            document.body.appendChild(msg);
+
+            setTimeout(() => {
+                msg.remove();
+            }, 1500);
+        }
+
+        function showNewStudentInfo() {
+            showMessage("سيتم تحويلك إلى صفحة معلومات الطلاب الجدد...");
+            setTimeout(() => {
+                window.location.href = "new_student.html"; // غيّر الاسم إذا غير
+            }, 1500);
+        }
+
+        function showAcademicNumberInquiry() {
+            showMessage("سيتم تحويلك إلى صفحة الاستعلام عن الرقم الأكاديمي...");
+            setTimeout(() => {
+                window.location.href = "academic_number.html";
+            }, 1500);
+        }
+
+        function showAcademicCalendar() {
+            showMessage("سيتم تحويلك إلى صفحة التقويم الأكاديمي...");
+            setTimeout(() => {
+                window.location.href = "academic_calendar.html";
+            }, 1500);
+        }
     </script>
+
+</body>
+</html>
 </body>
 </html>
 
