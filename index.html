@@ -267,6 +267,7 @@
   --card: #ffffff;
   --shadow: 0 8px 20px rgba(0,0,0,0.08);
   --muted: #55606a;
+  --error: #d32f2f;
   --success: #059669;
 }
 
@@ -323,9 +324,12 @@ input, select, textarea {
   width: 100%;
   padding: 10px;
   border-radius: 8px;
-  border: 1px solid #e6f0ea;
+  border: 1px solid #dfe8e3;
   font-size: 14px;
   background: #fff;
+}
+input:invalid, select:invalid {
+  border-color: #f0c2c2;
 }
 textarea { min-height: 100px; resize: vertical; }
 .row {
@@ -335,6 +339,7 @@ textarea { min-height: 100px; resize: vertical; }
   margin-bottom: 12px;
 }
 @media(max-width:700px){ .row { grid-template-columns:1fr; } }
+
 .btn {
   background: linear-gradient(90deg, var(--primary-green), #1a7a47);
   color: white;
@@ -386,14 +391,21 @@ textarea { min-height: 100px; resize: vertical; }
   font-size: 14px;
   color: var(--muted);
 }
-.success-msg {
+.success-msg, .error-msg {
   padding: 12px;
-  background: rgba(5,150,105,0.12);
-  border-left: 5px solid var(--success);
   border-radius: 8px;
   margin-top: 12px;
-  color: var(--success);
   font-weight: 700;
+}
+.success-msg {
+  background: rgba(5,150,105,0.12);
+  border-left: 5px solid var(--success);
+  color: var(--success);
+}
+.error-msg {
+  background: rgba(211,47,47,0.12);
+  border-left: 5px solid var(--error);
+  color: var(--error);
 }
 #notification {
   position: fixed;
@@ -427,60 +439,60 @@ textarea { min-height: 100px; resize: vertical; }
   <div id="notification">سيتم تحويلك إلى نموذج التسجيل…</div>
 
   <div id="registration-form" style="display:none;">
-
     <div class="card">
-    <form id="regForm" autocomplete="on">
+    <form id="regForm" autocomplete="on" novalidate>
 
       <h2>1. البيانات الشخصية</h2>
       <div class="row">
-        <div><label>الاسم الكامل (كما في الهوية)</label><input required></div>
-        <div><label>الاسم بالإنجليزية (اختياري)</label><input></div>
+        <div><label>الاسم الكامل (كما في الهوية)</label><input required name="fullname"></div>
+        <div><label>الاسم بالإنجليزية (اختياري)</label><input name="fullname_en"></div>
       </div>
       <div class="row">
-        <div><label>رقم الهوية / الإقامة</label><input required></div>
-        <div><label>رقم الجوال</label><input placeholder="05xxxxxxxx" required></div>
+        <div><label>رقم الهوية / الإقامة</label><input required name="id"></div>
+        <div><label>رقم الجوال</label><input required name="phone" pattern="05[0-9]{8}" placeholder="05xxxxxxxx"></div>
       </div>
       <div class="row">
         <div><label>الجنس</label>
-          <select required><option value="">-- اختر --</option><option>ذكر</option><option>أنثى</option></select>
+          <select required name="gender"><option value="">-- اختر --</option><option>ذكر</option><option>أنثى</option></select>
         </div>
         <div><label>الجنسية</label>
-          <select required>
+          <select required name="nationality">
             <option value="">-- اختر --</option>
             <option>السعودية</option><option>اليمن</option><option>مصر</option>
             <option>الأردن</option><option>الإمارات</option><option>قطر</option><option>دول أخرى</option>
           </select>
         </div>
       </div>
-      <div><label>البريد الإلكتروني</label><input type="email" required></div>
+      <div><label>البريد الإلكتروني</label><input type="email" required name="email"></div>
 
       <h2>2. بيانات الدراسة / العمل</h2>
       <div class="row">
         <div><label>الكلية</label>
-          <select required>
+          <select required name="college">
+            <option value="">-- اختر الكلية --</option>
             <option>كلية الطب</option><option>كلية الهندسة</option>
             <option>كلية إدارة الأعمال</option><option>كلية الحاسب الآلي</option>
           </select>
         </div>
-        <div><label>التخصص</label><input required></div>
+        <div><label>التخصص</label><input required name="major"></div>
       </div>
       <div><label>الحالة الدراسية</label>
-        <select required><option>طالب مستمر</option><option>خريج</option><option>متقدم جديد</option></select>
+        <select required name="status"><option value="">-- اختر الحالة --</option><option>طالب مستمر</option><option>خريج</option><option>متقدم جديد</option></select>
       </div>
 
       <h2>3. العنوان وبيانات الطوارئ</h2>
       <div class="row">
-        <div><label>المدينة</label><input></div>
-        <div><label>العنوان الكامل</label><input></div>
+        <div><label>المدينة</label><input required name="city"></div>
+        <div><label>العنوان الكامل</label><input required name="address"></div>
       </div>
 
       <h2>4. رفع الملفات</h2>
-      <div><label>رفع شهادة أو إيصال (PDF أو صورة)</label><input type="file" id="proof" accept="image/*,application/pdf"></div>
+      <div><label>رفع شهادة أو إيصال (PDF أو صورة)</label><input type="file" id="proof" accept="image/*,application/pdf" required></div>
       <div class="file-preview" id="preview"></div>
 
       <h2>5. الدفع البنكي</h2>
       <div class="row">
-        <div><label>طريقة الدفع</label><select required><option>تحويل بنكي</option></select></div>
+        <div><label>طريقة الدفع</label><select required><option value="">-- اختر --</option><option>تحويل بنكي</option></select></div>
         <div><label>الرسوم (ر.س)</label><input value="1200" readonly></div>
       </div>
 
@@ -534,14 +546,22 @@ proof.addEventListener('change',e=>{
 const sendBtn=document.getElementById('sendBtn');
 const msg=document.getElementById('msg');
 const regForm=document.getElementById('regForm');
+
 sendBtn.addEventListener('click',()=>{
-  msg.innerHTML='<div class="success-msg">تم استلام طلبك بنجاح! سيتم التواصل معك قريباً لمراجعة المستندات.</div>';
+  msg.innerHTML='';
+  if(!regForm.checkValidity()){
+    msg.innerHTML='<div class="error-msg">⚠️ الرجاء تعبئة جميع الحقول المطلوبة بشكل صحيح قبل الإرسال.</div>';
+    regForm.reportValidity();
+    return;
+  }
+  msg.innerHTML='<div class="success-msg">✅ تم استلام طلبك بنجاح! سيتم التواصل معك قريباً لمراجعة المستندات.</div>';
   regForm.scrollIntoView({behavior:"smooth"});
 });
 </script>
 
 </body>
 </html>
+</script>
 </body>
 </html>
 
