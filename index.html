@@ -250,9 +250,13 @@
             }, 1500);
         }
     </script>
-<!-- نموذج التسجيل الرسمي -->
-<div id="registration-form" style="display:none;font-family:'Noto Sans Arabic','Segoe UI',Tahoma,sans-serif;">
-
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نموذج تسجيل الطلاب - جامعة الملك فيصل</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 :root{
   --primary-green:#0f6b3f;
@@ -264,24 +268,47 @@
   --success:#059669;
 }
 
-#registration-form .card{background:var(--card);padding:20px;border-radius:12px;box-shadow:var(--shadow);margin-bottom:20px;}
-#registration-form h2{color:var(--primary-green);margin-bottom:12px;font-size:16px;border-bottom:1px solid rgba(15,107,63,0.1);padding-bottom:6px;}
-#registration-form label{display:block;font-weight:700;margin-bottom:6px;font-size:14px;}
-#registration-form input, #registration-form select, #registration-form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6f0ea;font-size:14px;background:#fff;}
-#registration-form textarea{min-height:100px;resize:vertical;}
-#registration-form .row{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:12px;}
-#registration-form .btn{background:linear-gradient(90deg,var(--primary-green),#1a7a47);color:white;padding:12px 18px;border-radius:10px;border:0;cursor:pointer;font-weight:700;transition:0.3s;}
-#registration-form .btn:hover{opacity:0.9;}
-#registration-form .btn.secondary{background:transparent;color:var(--primary-green);border:1px solid rgba(15,107,63,0.12);}
-#registration-form .file-preview{margin-top:10px;display:flex;gap:10px;align-items:center;}
-#registration-form .file-preview img{max-width:120px;border-radius:8px;border:1px solid #e6eef0;}
-#registration-form .pay-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed rgba(15,107,63,0.06);}
-#registration-form .pay-row:last-child{border-bottom:0;}
-#registration-form .mono{font-family:monospace;background:#fbfff8;padding:6px 8px;border-radius:8px;border:1px solid #eef6f0;}
-#registration-form .summary{background:linear-gradient(180deg,#fff,#fbfff8);border:1px solid rgba(15,107,63,0.05);padding:12px;border-radius:8px;margin-top:12px;font-size:14px;color:var(--muted);}
-#registration-form .success-msg{padding:12px;background:rgba(5,150,105,0.12);border-left:5px solid var(--success);border-radius:8px;margin-top:12px;color:var(--success);font-weight:700;}
-@media(max-width:700px){#registration-form .row{grid-template-columns:1fr}}
+body{background:var(--bg);font-family:'Noto Sans Arabic','Segoe UI',Tahoma,sans-serif;margin:0;padding:0;line-height:1.5;}
+.container{max-width:1000px;margin:0 auto;padding:20px;}
+h1{text-align:center;color:var(--primary-green);margin-bottom:30px;}
+.card{background:var(--card);padding:20px;border-radius:12px;box-shadow:var(--shadow);margin-bottom:20px;}
+.card h2{color:var(--primary-green);margin-bottom:12px;font-size:18px;border-bottom:1px solid rgba(15,107,63,0.1);padding-bottom:6px;}
+label{display:block;font-weight:700;margin-bottom:6px;font-size:14px;}
+input, select, textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6f0ea;font-size:14px;background:#fff;}
+textarea{min-height:100px;resize:vertical;}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:12px;}
+@media(max-width:700px){.row{grid-template-columns:1fr}}
+.btn{background:linear-gradient(90deg,var(--primary-green),#1a7a47);color:white;padding:12px 18px;border-radius:10px;border:0;cursor:pointer;font-weight:700;transition:0.3s;text-align:center;}
+.btn:hover{opacity:0.9;}
+.btn.secondary{background:transparent;color:var(--primary-green);border:1px solid rgba(15,107,63,0.12);}
+.file-preview{margin-top:10px;display:flex;gap:10px;align-items:center;}
+.file-preview img{max-width:120px;border-radius:8px;border:1px solid #e6eef0;}
+.pay-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed rgba(15,107,63,0.06);}
+.pay-row:last-child{border-bottom:0;}
+.mono{font-family:monospace;background:#fbfff8;padding:6px 8px;border-radius:8px;border:1px solid #eef6f0;}
+.summary{background:linear-gradient(180deg,#fff,#fbfff8);border:1px solid rgba(15,107,63,0.05);padding:12px;border-radius:8px;margin-top:12px;font-size:14px;color:var(--muted);}
+.success-msg{padding:12px;background:rgba(5,150,105,0.12);border-left:5px solid var(--success);border-radius:8px;margin-top:12px;color:var(--success);font-weight:700;}
+#notification{position:fixed;top:10px;left:50%;transform:translateX(-50%);background:#0f6b3f;color:#fff;padding:12px 20px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.1);z-index:9999;display:none;}
 </style>
+</head>
+<body>
+
+<div class="container">
+<h1>نموذج تسجيل الطلاب - جامعة الملك فيصل</h1>
+
+<!-- زر تقديم طلب جديد -->
+<div style="text-align:center;margin-bottom:20px;">
+<a href="#" class="btn" onclick="showNotificationAndForm()">
+    <i class="fas fa-user-graduate" aria-hidden="true"></i>
+    <span>تقديم طلب جديد</span>
+</a>
+</div>
+
+<!-- إشعار -->
+<div id="notification">سيتم تحويلك إلى نموذج التسجيل…</div>
+
+<!-- نموذج التسجيل -->
+<div id="registration-form" style="display:none;">
 
 <div class="card">
 <form id="regForm" autocomplete="on" novalidate>
@@ -366,32 +393,46 @@
 <div id="msg"></div>
 </form>
 </div>
+</div>
 
 <script>
-(function(){
-const regForm = document.getElementById('regForm');
-const sendBtn = document.getElementById('sendBtn');
-const msg = document.getElementById('msg');
-const preview = document.getElementById('preview');
+// إشعار + عرض النموذج
+function showNotificationAndForm() {
+    const notif = document.getElementById('notification');
+    notif.style.display = 'block';
+    setTimeout(() => {
+        notif.style.display = 'none';
+        const form = document.getElementById('registration-form');
+        form.style.display = 'block';
+        form.scrollIntoView({behavior:"smooth"});
+    }, 1500);
+}
+
+// معاينة الملفات (اختياري)
 const proof = document.getElementById('proof');
-
-proof.addEventListener('change',()=>{
-preview.innerHTML='';
-const f = proof.files[0];
-if(!f){preview.setAttribute('aria-hidden','true');return;}
-preview.removeAttribute('aria-hidden');
-const info=document.createElement('div');
-info.textContent='ملف مرفق: '+f.name+' ('+Math.round(f.size/1024)+' KB)';
-preview.appendChild(info);
-if(f.type.startsWith('image/')){
-const img=document.createElement('img');img.src=URL.createObjectURL(f);img.onload=()=>URL.revokeObjectURL(img.src);preview.appendChild(img);}
+const preview = document.getElementById('preview');
+proof.addEventListener('change', () => {
+    preview.innerHTML = '';
+    Array.from(proof.files).forEach(file => {
+        const reader = new FileReader();
+        reader.onload = e => {
+            if(file.type.startsWith('image/')){
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                preview.appendChild(img);
+            }else{
+                const div = document.createElement('div');
+                div.textContent = file.name;
+                preview.appendChild(div);
+            }
+        };
+        reader.readAsDataURL(file);
+    });
 });
+</script>
 
-sendBtn.addEventListener('click',()=>{
-msg.innerHTML='<div class="success-msg">تم استلام طلبك بنجاح! سيتم التواصل معك قريباً لمراجعة المستندات.</div>';
-regForm.scrollIntoView({behavior:"smooth"});
-});
-})();
+</body>
+</html>
 </script>
 
                                                         </div>
