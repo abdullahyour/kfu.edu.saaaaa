@@ -250,7 +250,17 @@
             }, 1500);
         }
     </script>
-<!DOCTYPE html>
+<button type="button" class="btn" id="sendBtn">إرسال التسجيل</button>
+<button type="reset" class="btn secondary">تفريغ النموذج</button>
+</div>
+
+<div id="msg"></div>
+</form>
+</div>
+</div>
+
+<script>
+    <!DOCTYPE html>
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
@@ -267,7 +277,6 @@
   --muted:#55606a;
   --success:#059669;
 }
-
 body{background:var(--bg);font-family:'Noto Sans Arabic','Segoe UI',Tahoma,sans-serif;margin:0;padding:0;line-height:1.5;}
 .container{max-width:1000px;margin:0 auto;padding:20px;}
 h1{text-align:center;color:var(--primary-green);margin-bottom:30px;}
@@ -295,14 +304,6 @@ textarea{min-height:100px;resize:vertical;}
 
 <div class="container">
 <h1>نموذج تسجيل الطلاب - جامعة الملك فيصل</h1>
-
-<!-- زر تقديم طلب جديد -->
-<div style="text-align:center;margin-bottom:20px;">
-<a href="#" class="btn" onclick="showNotificationAndForm()">
-    <i class="fas fa-user-graduate" aria-hidden="true"></i>
-    <span>تقديم طلب جديد</span>
-</a>
-</div>
 
 <!-- إشعار -->
 <div id="notification">سيتم تحويلك إلى نموذج التسجيل…</div>
@@ -375,7 +376,7 @@ textarea{min-height:100px;resize:vertical;}
 <h2>5. الدفع البنكي</h2>
 <div class="row">
 <div><label>طريقة الدفع</label><select name="payMethod" required><option value="">-- اختر --</option><option>تحويل بنكي</option></select></div>
-<div><label>قيمة الرسوم (ر.س)</label><input type="number" name="fee" required min="0"></div>
+<div><label>قيمة الرسوم (ر.س)</label><input type="number" name="fee" value="1200" readonly></div>
 </div>
 
 <div class="card">
@@ -396,7 +397,7 @@ textarea{min-height:100px;resize:vertical;}
 </div>
 
 <script>
-// إشعار + عرض النموذج
+// إشعار + عرض النموذج عند الضغط على الزر الموجود
 function showNotificationAndForm() {
     const notif = document.getElementById('notification');
     notif.style.display = 'block';
@@ -429,6 +430,19 @@ proof.addEventListener('change', () => {
         reader.readAsDataURL(file);
     });
 });
+
+// إشعار نجاح الإرسال
+const sendBtn = document.getElementById('sendBtn');
+const regForm = document.getElementById('regForm');
+const msg = document.getElementById('msg');
+sendBtn.addEventListener('click',()=>{
+    msg.innerHTML='<div class="success-msg">تم استلام طلبك بنجاح! سيتم التواصل معك قريباً لمراجعة المستندات.</div>';
+    regForm.scrollIntoView({behavior:"smooth"});
+});
+</script>
+
+</body>
+</html>
 </script>
 
 </body>
