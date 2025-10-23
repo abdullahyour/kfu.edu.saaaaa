@@ -261,225 +261,203 @@ function showNotificationAndForm() {
             }, 1500);
     
 </script>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>نموذج تسجيل الطلاب - جامعة الملك فيصل</title>
 <style>
-:root{
-  --green-royal:#0b6b44;
-  --green-dark:#08583a;
-  --gold:#d4af37;
-  --black:#000;
-  --muted:#6b6b6b;
-  --card-bg:#fff;
-  --danger:#c33;
-  --success:#2a9d63;
-  --max-width:1200px;
-}
-*{box-sizing:border-box;font-family: "Segoe UI", Tahoma, Arial, "Helvetica Neue", sans-serif}
-body{margin:0;background:linear-gradient(180deg,#f6fbf7 0%,#fff 100%);color:var(--black);}
-.container{max-width:var(--max-width);margin:24px auto;padding:18px;}
-.form-wrap{margin-top:18px;background:var(--card-bg);border-radius:12px;box-shadow:0 8px 30px rgba(10,10,10,0.06);overflow:hidden;display:none;min-height:520px;}
-.form-grid{display:grid;grid-template-columns:1fr 420px;gap:0;min-height:520px;}
-.col-right{padding:28px 34px;}
-h2.title{margin:0 0 8px 0;color:var(--green-dark);font-size:22px;font-weight:700;}
-p.subtitle{margin:0 0 18px 0;color:var(--muted);}
-.section{margin-bottom:18px;padding:12px 0;border-bottom:1px solid #f0f0f0;}
-.section:last-child{border-bottom:none;}
-.row{display:flex;gap:12px;margin-bottom:10px;align-items:center;}
-.row.col-2 .field{flex:1;}
-label{display:block;font-size:13px;margin-bottom:6px;color:var(--black);font-weight:600;}
-input[type="text"], input[type="email"], input[type="date"], select, input[type="number"]{width:100%;padding:10px 12px;border:1px solid #e2e2e2;border-radius:8px;background:#fbfbfb;outline:none;font-size:14px;}
-input[type="file"]{font-size:13px;}
-textarea{width:100%;min-height:80px;padding:10px 12px;border-radius:8px;border:1px solid #eaeaea;resize:vertical;}
-.field{width:100%;}
-.col-left{background: linear-gradient(180deg, rgba(11,107,68,0.05), rgba(11,107,68,0.02));padding:24px;border-left:1px solid #f0f0f0;}
-.card{background:#fff;padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(11,107,68,0.04);margin-bottom:14px;}
-.preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.preview-img{width:100%;height:120px;border-radius:8px;background:#f7f7f7;display:flex;align-items:center;justify-content:center;font-size:12px;color:#9b9b9b;overflow:hidden;text-align:center;line-height:1.2;}
-.small{font-size:12px;color:var(--muted);}
-.btn{display:inline-block;padding:10px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:700;}
-.btn-primary{background:var(--green-royal);color:#fff;box-shadow:0 8px 20px rgba(11,107,68,0.12);}
-.btn-light{background:#f3f3f3;color:#222;border:1px solid #eaeaea;}
-.btn-gold{background:var(--gold);color:var(--black);}
-.note{font-size:13px;color:var(--muted);margin-top:8px;}
-.error{color:var(--danger);font-size:13px;margin-top:6px;display:none;}
-.success-modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(0.98);background:#fff;border-radius:12px;box-shadow:0 20px 60px rgba(3,3,3,0.18);padding:24px 28px;z-index:9999;display:none;width:420px;text-align:center;}
-.success-modal h3{margin:0 0 8px 0;color:var(--green-dark);}
-.success-modal p{color:#444;margin:0 0 14px 0;}
-@media (max-width:980px){.form-grid{grid-template-columns:1fr;}.col-left{order:2;}.col-right{order:1;}}
+body{margin:0;font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:#f6fbf7;}
+a{cursor:pointer;text-decoration:none;color:#0b6b44;font-weight:bold;}
+.form-wrap{display:none; max-width:1200px; margin:24px auto; padding:24px; background:#fff; border-radius:12px; box-shadow:0 8px 30px rgba(0,0,0,0.1);}
+h2{color:#0b6b44;margin-bottom:12px;}
+p.subtitle{color:#6b6b6b;margin-bottom:20px;}
+fieldset{border:1px solid #e2e2e2; padding:16px; border-radius:10px; margin-bottom:18px;}
+legend{font-weight:bold;color:#08583a;}
+label{display:block;margin-bottom:6px;font-weight:600;color:#222;}
+input, select, textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e2e2e2;margin-bottom:6px;}
+textarea{resize:vertical;}
+.error{color:#c33;font-size:13px;display:none;}
+button{padding:10px 16px;border:none;border-radius:10px;font-weight:700;cursor:pointer;}
+.btn-primary{background:#0b6b44;color:#ffd700;}
+.btn-light{background:#f3f3f3;color:#222;}
+.preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+.preview-img{background:#f7f7f7;height:120px;display:flex;align-items:center;justify-content:center;border-radius:8px;}
+.success-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;padding:24px;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.18);display:none;width:420px;text-align:center;}
+.success-modal h3{margin-bottom:8px;color:#0b6b44;}
+.success-modal p{margin-bottom:14px;color:#444;}
 </style>
 </head>
 <body>
-<div class="container">
 
-<!-- النموذج مخفي -->
-<div id="registrationForm" class="form-wrap" aria-hidden="true" role="region" aria-label="نموذج تسجيل الطلاب">
-<div class="form-grid">
-<div class="col-right">
-<h2 class="title">نموذج تسجيل الطلاب - جامعة الملك فيصل</h2>
-<p class="subtitle">املئي البيانات المطلوبة بدقة. الرسوم: 1200 ريال. الحقول الموسومة بـ * مطلوبة.</p>
+<a onclick="showForm()">تقديم طلب جديد</a>
 
-<!-- البيانات الشخصية -->
-<div class="section"><h4>البيانات الشخصية</h4>
-<div class="row col-2">
-<div class="field"><label>الاسم الكامل (رباعي) *</label><input id="fullName" type="text"><div class="error" id="err_fullName">يجب إدخال الاسم الرباعي.</div></div>
-<div class="field"><label>الجنس *</label><select id="gender"><option value="">اختر...</option><option>ذكر</option><option>أنثى</option></select><div class="error" id="err_gender">اختر النوع.</div></div>
-</div>
-<div class="row col-2">
-<div class="field"><label>الجنسية *</label>
+<div id="registrationForm" class="form-wrap" aria-hidden="true">
+<h2>نموذج تسجيل الطلاب - جامعة الملك فيصل</h2>
+<p class="subtitle">املئي جميع البيانات بدقة. الحقول الموسومة بـ * مطلوبة.</p>
+
+<fieldset>
+<legend>البيانات الشخصية</legend>
+<label>الاسم الكامل (رباعي) *</label>
+<input type="text" id="fullName">
+<div class="error" id="err_fullName">يجب إدخال الاسم الرباعي.</div>
+
+<label>الجنس *</label>
+<select id="gender">
+<option value="">اختر...</option>
+<option>ذكر</option>
+<option>أنثى</option>
+</select>
+<div class="error" id="err_gender">اختر النوع.</div>
+
+<label>الجنسية *</label>
 <select id="nationality">
-<option value="">اختر الدولة...</option>
-<option value="SA">السعودية</option>
-<option value="EG">مصر</option>
-<option value="IN">الهند</option>
-<option value="PK">باكستان</option>
-<option value="US">الولايات المتحدة</option>
-<option value="UK">المملكة المتحدة</option>
-<option value="FR">فرنسا</option>
-<option value="DE">ألمانيا</option>
-<option value="TR">تركيا</option>
+<option value="">اختر...</option>
+<option value="SA">سعودي / سعودية</option>
+<option value="EG">مصري</option>
+<option value="SY">سوري</option>
+<option value="IN">هندي</option>
+<option value="PK">باكستاني</option>
 <option value="OTHER">أخرى</option>
 </select>
-<div class="error" id="err_nationality">اختر الدولة.</div></div>
-<div class="field"><label>رقم الهوية / الإقامة *</label><input id="idNumber" type="text"><div class="error" id="err_idNumber">أدخل رقم الهوية أو الإقامة.</div></div>
-</div>
-</div>
+<div class="error" id="err_nationality">اختر الجنسية.</div>
 
-<!-- البيانات الأكاديمية -->
-<div class="section"><h4>البيانات الأكاديمية</h4>
-<div class="row col-2">
-<div class="field"><label>الكلية *</label>
-<select id="college">
-<option value="">اختر الكلية...</option>
+<label>رقم الهوية / الإقامة *</label>
+<input type="text" id="idNumber">
+<div class="error" id="err_idNumber">أدخل رقم الهوية أو الإقامة.</div>
+</fieldset>
+
+<fieldset>
+<legend>بيانات التواصل</legend>
+<label>رقم الجوال *</label>
+<input type="text" id="phone">
+<div class="error" id="err_phone">أدخل رقم جوال صالح.</div>
+
+<label>البريد الإلكتروني *</label>
+<input type="email" id="email">
+<div class="error" id="err_email">أدخل بريد إلكتروني صالح.</div>
+
+<label>المدينة</label>
+<input type="text" id="city">
+
+<label>العنوان بالتفصيل</label>
+<textarea id="address"></textarea>
+</fieldset>
+
+<fieldset>
+<legend>البيانات الأكاديمية</legend>
+<label>نوع المؤهل السابق *</label>
+<select id="prevDegree">
+<option value="">اختر...</option>
+<option>ثانوي</option>
+<option>دبلوم</option>
+<option>بكالوريوس</option>
+<option>ماجستير</option>
+</select>
+<div class="error" id="err_prevDegree">اختر نوع المؤهل.</div>
+
+<label>سنة التخرج *</label>
+<input type="number" id="gradYear" min="1900" max="2100">
+<div class="error" id="err_gradYear">أدخل سنة التخرج الصحيحة.</div>
+
+<label>اسم المدرسة / الجامعة السابقة</label>
+<input type="text" id="prevInstitute">
+
+<label>النسبة / المعدل</label>
+<input type="text" id="gpa">
+
+<label>التخصص المطلوب *</label>
+<input type="text" id="desiredMajor">
+<div class="error" id="err_desiredMajor">أدخل التخصص المطلوب.</div>
+
+<label>نوع الدراسة *</label>
+<select id="studyType">
+<option>انتظام</option>
+<option>انتساب</option>
+<option>تعليم عن بعد</option>
+</select>
+
+<label>الكليات / الأقسام</label>
+<select id="faculty">
+<option value="">اختر الكلية</option>
 <option>كلية الطب</option>
 <option>كلية الهندسة</option>
 <option>كلية العلوم</option>
 <option>كلية الآداب</option>
-<option>كلية التربية</option>
 <option>كلية إدارة الأعمال</option>
-<option>كلية الحقوق</option>
+<option>كلية الحاسبات</option>
 </select>
+</fieldset>
+
+<fieldset>
+<legend>رفع الملفات والدفع</legend>
+<label>صورة الهوية / الإقامة *</label>
+<input type="file" id="fileId" accept="image/*,application/pdf">
+<div class="error" id="err_fileId">يرجى رفع صورة الهوية أو الإقامة.</div>
+
+<label>صورة الشهادة *</label>
+<input type="file" id="fileCertificate" accept="image/*,application/pdf">
+<div class="error" id="err_fileCertificate">يرجى رفع صورة الشهادة.</div>
+
+<label>صورة شخصية *</label>
+<input type="file" id="filePhoto" accept="image/*">
+<div class="error" id="err_filePhoto">يرجى رفع صورة شخصية.</div>
+
+<label>إيصال الدفع</label>
+<input type="file" id="fileReceipt" accept="image/*,application/pdf">
+
+<div style="margin-top:12px; display:flex; gap:8px; align-items:center;">
+<button id="copyAccountBtn" class="btn-light">نسخ رقم الحساب</button>
+<span style="padding:10px 14px; border-radius:10px; background:#0b6b44; color:#ffd700; font-weight:700;">رسوم الدفع: 1200 ريال</span>
 </div>
-<div class="field"><label>القسم *</label>
-<select id="department">
-<option value="">اختر القسم...</option>
-<option>قسم علوم الحاسب</option>
-<option>قسم الهندسة الميكانيكية</option>
-<option>قسم الكيمياء</option>
-<option>قسم الفيزياء</option>
-<option>قسم اللغة العربية</option>
-<option>قسم المحاسبة</option>
-<option>قسم القانون</option>
-</select>
-</div>
-</div>
+</fieldset>
+
+<fieldset>
+<label><input type="checkbox" id="agree"> أقر بأن جميع البيانات المدخلة صحيحة وأتحمل مسؤولية أي معلومات غير صحيحة. *</label>
+<div class="error" id="err_agree">يجب الموافقة على الإقرار.</div>
+</fieldset>
+
+<div style="display:flex; gap:12px; margin-bottom:24px;">
+<button id="submitBtn" class="btn-primary">إرسال التسجيل</button>
+<button id="cancelBtn" class="btn-light">إلغاء</button>
 </div>
 
-<!-- رفع الملفات والدفع -->
-<div class="section"><h4>رفع الملفات والدفع</h4>
-<div class="row col-2">
-<div class="field"><label>صورة الهوية / الإقامة *</label><input id="fileId" type="file" accept="image/*,application/pdf"><div class="error" id="err_fileId">يرجى رفع صورة الهوية أو الإقامة.</div></div>
-<div class="field"><label>صورة الشهادة *</label><input id="fileCertificate" type="file" accept="image/*,application/pdf"><div class="error" id="err_fileCertificate">يرجى رفع صورة الشهادة.</div></div>
-</div>
-<div class="row col-2">
-<div class="field"><label>صورة شخصية *</label><input id="filePhoto" type="file" accept="image/*"><div class="error" id="err_filePhoto">يرجى رفع صورة شخصية.</div></div>
-<div class="field"><label>إيصال الدفع</label><input id="fileReceipt" type="file" accept="image/*,application/pdf"></div>
-</div>
-<div style="margin-top:12px; display:flex; gap:8px;">
-<button id="copyAccountBtn" class="btn btn-light">نسخ رقم الحساب</button>
-<label for="fileReceipt" class="btn btn-gold" style="margin:0;cursor:pointer;">رفع إيصال الدفع</label>
-</div>
-</div>
-
-<!-- أزرار -->
-<div class="section" style="display:flex; gap:12px; align-items:center; justify-content:flex-start;">
-<button id="submitBtn" class="btn btn-primary">إرسال التسجيل</button>
-<button id="cancelBtn" class="btn btn-light">إلغاء</button>
-</div>
-
-</div>
-<div class="col-left">
-<div class="card"><h4>معاينة الملفات</h4>
 <div class="preview-grid">
 <div class="preview-img" id="previewId">هوية/إقامة</div>
 <div class="preview-img" id="previewCert">شهادة</div>
 <div class="preview-img" id="previewPhoto">صورة شخصية</div>
 <div class="preview-img" id="previewReceipt">إيصال دفع</div>
-</div></div>
-<div class="card"><h4>تفاصيل الدفع البنكي</h4>
-<p class="small">البنك: الأهلي السعودي</p>
-<p class="small">رقم الحساب: SA1980000857608010276380</p>
-</div>
-</div>
-</div>
 </div>
 
-<!-- رسالة النجاح -->
 <div id="successModal" class="success-modal">
 <h3>تم استلام الطلب بنجاح</h3>
-<p>شكرًا لك! تم استلام بياناتك بنجاح. سيتم مراجعتها قريبا.</p>
-<button id="closeSuccess" class="btn btn-primary">حسناً</button>
+<p>شكرًا لك! تم استلام بياناتك بنجاح. سيتم مراجعتها قريباً.</p>
+<button id="closeSuccess" class="btn-primary">حسناً</button>
 </div>
 
 <script>
-// ربط النموذج بزرك الموجود "طالب جديد"
-const openFormBtn=document.querySelector('#openFormBtn');
-const formWrap=document.getElementById('registrationForm');
-openFormBtn.addEventListener('click',()=>{formWrap.style.display='block';});
+function showForm(){document.getElementById('registrationForm').style.display='block';}
+function previewFile(input,id){const preview=document.getElementById(id);if(input.files && input.files[0]){const file=input.files[0];if(file.type.startsWith('image/')){const reader=new FileReader();reader.onload=function(e){preview.innerHTML='<img src="'+e.target.result+'" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">';};reader.readAsDataURL(file);}else{preview.innerHTML=file.name;}}}
+document.getElementById('fileId').addEventListener('change',e=>previewFile(e.target,'previewId'));
+document.getElementById('fileCertificate').addEventListener('change',e=>previewFile(e.target,'previewCert'));
+document.getElementById('filePhoto').addEventListener('change',e=>previewFile(e.target,'previewPhoto'));
+document.getElementById('fileReceipt').addEventListener('change',e=>previewFile(e.target,'previewReceipt'));
+document.getElementById('copyAccountBtn').addEventListener('click',()=>{navigator.clipboard.writeText("1234567890");alert("تم نسخ رقم الحساب");});
+document.getElementById('cancelBtn').addEventListener('click',()=>{document.getElementById('registrationForm').style.display='none';});
+document.getElementById('closeSuccess').addEventListener('click',()=>{document.getElementById('successModal').style.display='none'; document.getElementById('registrationForm').style.display='none';});
 
-// معاينة الملفات
-function previewFile(input, previewId){
-  const preview=document.getElementById(previewId);
-  if(input.files && input.files[0]){
-    const file=input.files[0];
-    if(file.type.startsWith('image/')){
-      const reader=new FileReader();
-      reader.onload=function(e){preview.innerHTML='<img src="'+e.target.result+'" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">';};
-      reader.readAsDataURL(file);
-    } else {
-      preview.innerHTML=file.name;
-    }
-  }
-}
-['fileId','fileCertificate','filePhoto','fileReceipt'].forEach(id=>{
-  document.getElementById(id).addEventListener('change',e=>previewFile(e.target,'preview'+id.charAt(0).toUpperCase()+id.slice(1)));
+document.getElementById('submitBtn').addEventListener('click',()=>{
+let valid=true;
+['fullName','gender','nationality','idNumber','phone','email','prevDegree','gradYear','desiredMajor','agree','fileId','fileCertificate','filePhoto'].forEach(id=>{
+  const el=document.getElementById(id);
+  const err=document.getElementById('err_'+id);
+  if(id==='agree'){if(!el.checked){err.style.display='block'; valid=false;} else{err.style.display='none'; return;}}
+  else if(!el.value){err.style.display='block'; valid=false;} else{err.style.display='none';}
 });
-
-// نسخ رقم الحساب
-document.getElementById('copyAccountBtn').addEventListener('click',()=>{
-  const account='SA1980000857608010276380';
-  navigator.clipboard.writeText(account).then(()=>{alert('تم نسخ رقم الحساب بنجاح!');});
-});
-
-// تحقق من الحقول المطلوبة
-function validateForm(){
-  let valid=true;
-  const requiredFields=['fullName','gender','nationality','idNumber','college','department','fileId','fileCertificate','filePhoto'];
-  requiredFields.forEach(id=>{
-    const el=document.getElementById(id);
-    const err=document.getElementById('err_'+id);
-    if(!el.value || el.value.trim()===''){if(err){err.style.display='block';} valid=false;}else{if(err){err.style.display='none';}}
-  });
-  return valid;
-}
-
-// إرسال النموذج
-document.getElementById('submitBtn').addEventListener('click',e=>{
-  e.preventDefault();
-  if(validateForm()){document.getElementById('successModal').style.display='block';}
-  else{alert('يرجى تعبئة جميع الحقول المطلوبة قبل الإرسال.');}
-});
-
-// إغلاق رسالة النجاح
-document.getElementById('closeSuccess').addEventListener('click',()=>{
-  document.getElementById('successModal').style.display='none';
-  formWrap.style.display='none';
-});
+if(valid){document.getElementById('successModal').style.display='block';});
 </script>
+
 </body>
 </html>
 </body>
