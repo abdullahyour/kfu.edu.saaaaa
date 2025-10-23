@@ -134,9 +134,9 @@
                 <div class="quick-access">
                     <h3>وصول سريع</h3>
                     <div class="quick-links">
-                        <a href="#" class="quick-link" onclick="showNewStudentInfo()">
-                            <i class="fas fa-user-graduate" aria-hidden="true"></i>
-                            <span>طالب جديد</span>
+                        <a href="#" class="quick-link" onclick="document.getElementById('registration-form').style.display='block';">
+    <i class="fas fa-user-graduate" aria-hidden="true"></i>
+    <span>تقديم طلب جديد</span>
                         </a>
                         <a href="#" class="quick-link" onclick="showAcademicNumberInquiry()">
                             <i class="fas fa-file-alt" aria-hidden="true"></i>
@@ -250,6 +250,151 @@
             }, 1500);
         }
     </script>
+<!-- نموذج التسجيل الرسمي -->
+<div id="registration-form" style="display:none;font-family:'Noto Sans Arabic','Segoe UI',Tahoma,sans-serif;">
+
+<style>
+:root{
+  --primary-green:#0f6b3f;
+  --accent-gold:#c99a2a;
+  --bg:#f4f9f6;
+  --card:#ffffff;
+  --shadow:0 8px 20px rgba(0,0,0,0.08);
+  --muted:#55606a;
+  --success:#059669;
+}
+
+#registration-form .card{background:var(--card);padding:20px;border-radius:12px;box-shadow:var(--shadow);margin-bottom:20px;}
+#registration-form h2{color:var(--primary-green);margin-bottom:12px;font-size:16px;border-bottom:1px solid rgba(15,107,63,0.1);padding-bottom:6px;}
+#registration-form label{display:block;font-weight:700;margin-bottom:6px;font-size:14px;}
+#registration-form input, #registration-form select, #registration-form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6f0ea;font-size:14px;background:#fff;}
+#registration-form textarea{min-height:100px;resize:vertical;}
+#registration-form .row{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:12px;}
+#registration-form .btn{background:linear-gradient(90deg,var(--primary-green),#1a7a47);color:white;padding:12px 18px;border-radius:10px;border:0;cursor:pointer;font-weight:700;transition:0.3s;}
+#registration-form .btn:hover{opacity:0.9;}
+#registration-form .btn.secondary{background:transparent;color:var(--primary-green);border:1px solid rgba(15,107,63,0.12);}
+#registration-form .file-preview{margin-top:10px;display:flex;gap:10px;align-items:center;}
+#registration-form .file-preview img{max-width:120px;border-radius:8px;border:1px solid #e6eef0;}
+#registration-form .pay-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed rgba(15,107,63,0.06);}
+#registration-form .pay-row:last-child{border-bottom:0;}
+#registration-form .mono{font-family:monospace;background:#fbfff8;padding:6px 8px;border-radius:8px;border:1px solid #eef6f0;}
+#registration-form .summary{background:linear-gradient(180deg,#fff,#fbfff8);border:1px solid rgba(15,107,63,0.05);padding:12px;border-radius:8px;margin-top:12px;font-size:14px;color:var(--muted);}
+#registration-form .success-msg{padding:12px;background:rgba(5,150,105,0.12);border-left:5px solid var(--success);border-radius:8px;margin-top:12px;color:var(--success);font-weight:700;}
+@media(max-width:700px){#registration-form .row{grid-template-columns:1fr}}
+</style>
+
+<div class="card">
+<form id="regForm" autocomplete="on" novalidate>
+
+<h2>1. البيانات الشخصية</h2>
+<div class="row">
+<div><label>الاسم الكامل (كما في الهوية)</label><input name="fullName" type="text" required></div>
+<div><label>الاسم بالإنجليزية (اختياري)</label><input name="englishName" type="text"></div>
+</div>
+<div class="row">
+<div><label>رقم الهوية / الإقامة</label><input name="nationalId" type="text" required></div>
+<div><label>رقم السجل المدني (اختياري)</label><input name="civilId" type="text"></div>
+</div>
+<div class="row">
+<div><label>الجنس</label><select name="gender" required><option value="">-- اختر --</option><option>ذكر</option><option>أنثى</option></select></div>
+<div><label>الجنسية</label><select name="nationality" required>
+<option value="">-- اختر --</option>
+<option>السعودية</option><option>مصر</option><option>الإمارات</option><option>قطر</option>
+<option>الأردن</option><option>اليمن</option><option>دول أخرى</option>
+</select></div>
+</div>
+<div class="row">
+<div><label>تاريخ الميلاد</label><input type="date" name="birth" required></div>
+<div><label>رقم الجوال</label><input type="tel" name="phone" required placeholder="05xxxxxxxx"></div>
+</div>
+<div class="row">
+<div style="grid-column:1/3"><label>البريد الإلكتروني</label><input type="email" name="email" required></div>
+</div>
+
+<h2>2. بيانات الدراسة / العمل</h2>
+<div class="row">
+<div><label>الكلية / الجهة</label><select name="college" required>
+<option value="">-- اختر --</option>
+<option>كلية الطب</option><option>كلية الهندسة</option><option>كلية العلوم</option>
+<option>كلية إدارة الأعمال</option><option>كلية الحاسب الآلي</option>
+</select></div>
+<div><label>التخصص / البرنامج</label><input name="program" type="text" required></div>
+</div>
+<div class="row">
+<div><label>أعلى مؤهل</label><select name="degree" required>
+<option value="">-- اختر --</option><option>ثانوي</option><option>دبلوم</option><option>بكالوريوس</option><option>ماجستير</option><option>دكتوراه</option>
+</select></div>
+<div><label>المعدل</label><input name="gpa" type="text"></div>
+</div>
+<div class="row">
+<div><label>الحالة الدراسية</label><select name="studyStatus" required><option value="">-- اختر --</option><option>طالب مستمر</option><option>خريج</option><option>متقدم جديد</option></select></div>
+<div><label>جهة العمل (إن وُجد)</label><input name="work" type="text"></div>
+</div>
+
+<h2>3. العنوان وبيانات الطوارئ</h2>
+<div class="row">
+<div><label>المدينة</label><input name="city" type="text"></div>
+<div><label>العنوان الكامل</label><input name="address" type="text"></div>
+</div>
+<div class="row">
+<div><label>جهة اتصال للطوارئ</label><input name="emName" type="text"></div>
+<div><label>هاتف الطوارئ</label><input name="emPhone" type="tel"></div>
+</div>
+
+<h2>4. إرفاق الشهادات / الإيصالات</h2>
+<div><label>رفع شهادة أو إيصال (PDF أو صورة)</label><input type="file" name="proof" id="proof" accept="image/*,application/pdf"></div>
+<div class="file-preview" id="preview" aria-hidden="true"></div>
+
+<h2>5. الدفع البنكي</h2>
+<div class="row">
+<div><label>طريقة الدفع</label><select name="payMethod" required><option value="">-- اختر --</option><option>تحويل بنكي</option></select></div>
+<div><label>قيمة الرسوم (ر.س)</label><input type="number" name="fee" required min="0"></div>
+</div>
+
+<div class="card">
+<h3>بيانات الدفع الرسمية</h3>
+<div class="pay-row"><div>البنك</div><div class="muted">البنك الأهلي السعودي</div></div>
+<div class="pay-row"><div>IBAN</div><div class="mono">SA19 80000857608010276380</div></div>
+<div class="summary">بعد إتمام التسجيل، سيتم مراجعة المستندات والتحقق من الدفع. تأكد من رفع الملفات المطلوبة.</div>
+</div>
+
+<div style="display:flex;gap:10px;align-items:center;margin-top:12px">
+<button type="button" class="btn" id="sendBtn">إرسال التسجيل</button>
+<button type="reset" class="btn secondary">تفريغ النموذج</button>
+</div>
+
+<div id="msg"></div>
+</form>
+</div>
+
+<script>
+(function(){
+const regForm = document.getElementById('regForm');
+const sendBtn = document.getElementById('sendBtn');
+const msg = document.getElementById('msg');
+const preview = document.getElementById('preview');
+const proof = document.getElementById('proof');
+
+proof.addEventListener('change',()=>{
+preview.innerHTML='';
+const f = proof.files[0];
+if(!f){preview.setAttribute('aria-hidden','true');return;}
+preview.removeAttribute('aria-hidden');
+const info=document.createElement('div');
+info.textContent='ملف مرفق: '+f.name+' ('+Math.round(f.size/1024)+' KB)';
+preview.appendChild(info);
+if(f.type.startsWith('image/')){
+const img=document.createElement('img');img.src=URL.createObjectURL(f);img.onload=()=>URL.revokeObjectURL(img.src);preview.appendChild(img);}
+});
+
+sendBtn.addEventListener('click',()=>{
+msg.innerHTML='<div class="success-msg">تم استلام طلبك بنجاح! سيتم التواصل معك قريباً لمراجعة المستندات.</div>';
+regForm.scrollIntoView({behavior:"smooth"});
+});
+})();
+</script>
+
+                                                        </div>
 
 </body>
 </html>
