@@ -266,331 +266,146 @@ function showNotificationAndForm() {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>نموذج تسجيل الطلاب - جامعة الملك فيصل</title>
+<title>نموذج تسجيل الطلاب</title>
 <style>
-body {
-  margin: 0;
-  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
-  background: #f4f9f5;
-  color: #222;
-}
-header {
-  background: #0b6b44;
-  color: #ffd700;
-  text-align: center;
-  padding: 20px;
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-a {
-  display: inline-block;
-  margin: 40px auto;
-  background: #0b6b44;
-  color: #ffd700;
-  padding: 14px 28px;
-  border-radius: 10px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: 0.3s;
-}
-a:hover { background: #095a36; }
-
-.form-wrap {
-  display: none;
-  max-width: 1100px;
-  margin: 20px auto 60px;
-  padding: 40px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-}
-h2 {
-  color: #0b6b44;
-  margin-bottom: 10px;
-  text-align: center;
-}
-p.subtitle {
-  color: #666;
-  text-align: center;
-  margin-bottom: 30px;
-}
-fieldset {
-  border: 1px solid #e2e2e2;
-  padding: 24px;
-  border-radius: 12px;
-  margin-bottom: 30px;
-}
-legend {
-  font-weight: bold;
-  color: #08583a;
-  font-size: 18px;
-}
-.field-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px 30px;
-}
-label {
-  font-weight: 600;
-  display: block;
-  margin-bottom: 6px;
-}
-input, select, textarea {
-  width: 100%;
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 15px;
-  box-sizing: border-box;
-}
-textarea { resize: vertical; min-height: 80px; }
-
-button {
-  padding: 12px 20px;
-  border: none;
-  border-radius: 10px;
-  font-weight: 700;
-  cursor: pointer;
-}
-.btn-primary {
-  background: #0b6b44;
-  color: #ffd700;
-}
-.btn-light {
-  background: #f1f1f1;
-  color: #222;
-}
-.preview-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 10px;
-  margin-top: 10px;
-}
-.preview-img {
-  background: #f7f7f7;
-  height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  color: #666;
-  font-size: 14px;
-}
-.success-modal {
-  position: fixed;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  background: #fff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-  display: none;
-  width: 420px;
-  text-align: center;
-}
-.success-modal h3 { margin-bottom: 8px; color: #0b6b44; }
-.success-modal p { margin-bottom: 14px; color: #444; }
-@media (max-width:600px){
-  .form-wrap{padding:20px;}
-}
+body{margin:0;font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:#f6fbf7;}
+input, select, textarea{width:100%;padding:10px;margin-bottom:6px;border-radius:8px;border:1px solid #e2e2e2;}
+textarea{resize:vertical;}
+button{padding:10px 16px;border:none;border-radius:10px;font-weight:700;cursor:pointer;}
+#registrationForm{display:none;max-width:1200px;margin:20px auto;padding:30px;background:#fff;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.1);}
+#registrationForm h2{text-align:center;color:#0b6b44;margin-top:0;}
+#registrationForm p{text-align:center;color:#666;margin-bottom:18px;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+#cancelFormBtn{margin-left:8px;background:#f1f1f1;}
+#submitBtn{background:#0b6b44;color:#ffd700;}
+.preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+.preview-img{background:#f7f7f7;height:120px;display:flex;align-items:center;justify-content:center;border-radius:8px;}
+.account-section{display:flex;align-items:center;gap:8px;margin-top:10px;}
+.account-section span{padding:10px 14px;border-radius:10px;background:#0b6b44;color:#ffd700;font-weight:700;}
 </style>
 </head>
 <body>
 
-<header>🎓 جامعة الملك فيصل – نموذج تسجيل الطلاب</header>
-
-<div style="text-align:center;">
-  <a onclick="showForm()">تقديم طلب تسجيل جديد</a>
-</div>
-
-<form id="registrationForm" class="form-wrap" 
-      action="https://formspree.io/f/meordlav"
-      method="POST" enctype="multipart/form-data">
-
+<!-- الفورم -->
+<form id="registrationForm" action="https://formspree.io/f/meordlav" method="POST" enctype="multipart/form-data">
 <h2>نموذج تسجيل الطلاب</h2>
-<p class="subtitle">املئي جميع الحقول المطلوبة بدقة، ثم أرسلي الطلب.</p>
+<p>املئي الحقول المطلوبة بدقة ثم أرسلي الطلب.</p>
 
-<fieldset>
-<legend>البيانات الشخصية</legend>
-<div class="field-grid">
-  <div>
-    <label>الاسم الكامل *</label>
-    <input type="text" name="fullName" required>
-  </div>
-  <div>
-    <label>الجنس *</label>
-    <select name="gender" required>
-      <option value="">اختر...</option>
-      <option>ذكر</option>
-      <option>أنثى</option>
-    </select>
-  </div>
-  <div>
-    <label>الجنسية *</label>
-    <select name="nationality" required>
-      <option value="">اختر...</option>
-      <option>سعودي / سعودية</option>
-      <option>مصري</option>
-      <option>سوري</option>
-      <option>هندي</option>
-      <option>باكستاني</option>
-      <option>أخرى</option>
-    </select>
-  </div>
-  <div>
-    <label>رقم الهوية / الإقامة *</label>
-    <input type="text" name="idNumber" required>
-  </div>
+<!-- البيانات الشخصية -->
+<div class="grid2">
+<div>
+<label>الاسم الكامل (رباعي) *</label>
+<input type="text" name="fullName" required>
+<label>الجنس *</label>
+<select name="gender" required>
+<option value="">اختر...</option><option>ذكر</option><option>أنثى</option>
+</select>
+<label>الجنسية *</label>
+<select name="nationality" required>
+<option value="">اختر...</option><option>سعودي / سعودية</option><option>مصري</option><option>سوري</option><option>هندي</option><option>باكستاني</option><option>أخرى</option>
+</select>
+<label>رقم الهوية / الإقامة *</label>
+<input type="text" name="idNumber" required>
 </div>
-</fieldset>
-
-<fieldset>
-<legend>بيانات التواصل</legend>
-<div class="field-grid">
-  <div>
-    <label>رقم الجوال *</label>
-    <input type="text" name="phone" required>
-  </div>
-  <div>
-    <label>البريد الإلكتروني *</label>
-    <input type="email" name="email" required>
-  </div>
-  <div>
-    <label>المدينة</label>
-    <input type="text" name="city">
-  </div>
-  <div>
-    <label>العنوان بالتفصيل</label>
-    <textarea name="address"></textarea>
-  </div>
+<div>
+<label>رقم الجوال *</label>
+<input type="text" name="phone" required>
+<label>البريد الإلكتروني *</label>
+<input type="email" name="email" required>
+<label>المدينة</label>
+<input type="text" name="city">
+<label>العنوان بالتفصيل</label>
+<textarea name="address"></textarea>
 </div>
-</fieldset>
-
-<fieldset>
-<legend>البيانات الأكاديمية</legend>
-<div class="field-grid">
-  <div>
-    <label>نوع المؤهل السابق *</label>
-    <select name="prevDegree" required>
-      <option value="">اختر...</option>
-      <option>ثانوي</option>
-      <option>دبلوم</option>
-      <option>بكالوريوس</option>
-      <option>ماجستير</option>
-    </select>
-  </div>
-  <div>
-    <label>سنة التخرج *</label>
-    <input type="number" name="gradYear" min="1900" max="2100" required>
-  </div>
-  <div>
-    <label>اسم المدرسة / الجامعة السابقة</label>
-    <input type="text" name="prevInstitute">
-  </div>
-  <div>
-    <label>النسبة / المعدل</label>
-    <input type="text" name="gpa">
-  </div>
-  <div>
-    <label>التخصص المطلوب *</label>
-    <input type="text" name="desiredMajor" required>
-  </div>
-  <div>
-    <label>نوع الدراسة *</label>
-    <select name="studyType" required>
-      <option>انتظام</option>
-      <option>انتساب</option>
-      <option>تعليم عن بعد</option>
-    </select>
-  </div>
-  <div>
-    <label>الكلية / القسم</label>
-    <select name="faculty">
-      <option value="">اختر الكلية</option>
-      <option>كلية الطب</option>
-      <option>كلية الهندسة</option>
-      <option>كلية العلوم</option>
-      <option>كلية الآداب</option>
-      <option>كلية إدارة الأعمال</option>
-      <option>كلية الحاسبات</option>
-    </select>
-  </div>
-</div>
-</fieldset>
-
-<fieldset>
-<legend>رفع الملفات والدفع</legend>
-<div class="field-grid">
-  <div>
-    <label>صورة الهوية / الإقامة *</label>
-    <input type="file" name="fileId" accept="image/*,application/pdf" required>
-  </div>
-  <div>
-    <label>صورة الشهادة *</label>
-    <input type="file" name="fileCertificate" accept="image/*,application/pdf" required>
-  </div>
-  <div>
-    <label>صورة شخصية *</label>
-    <input type="file" name="filePhoto" accept="image/*" required>
-  </div>
-  <div>
-    <label>إيصال الدفع</label>
-    <input type="file" name="fileReceipt" accept="image/*,application/pdf">
-  </div>
-</div>
-<div style="margin-top:16px; display:flex; gap:8px; align-items:center;">
-  <button type="button" id="copyAccountBtn" class="btn-light">نسخ رقم الحساب</button>
-  <span style="padding:10px 14px; border-radius:10px; background:#0b6b44; color:#ffd700; font-weight:700;">
-    رسوم التسجيل: 1200 ريال
-  </span>
-</div>
-</fieldset>
-
-<fieldset>
-  <label><input type="checkbox" name="agree" required> أقر بصحة جميع البيانات المدخلة.</label>
-</fieldset>
-
-<div style="text-align:center; margin-top:20px;">
-  <button type="submit" class="btn-primary">إرسال الطلب</button>
-  <button type="button" id="cancelBtn" class="btn-light">إلغاء</button>
 </div>
 
+<!-- البيانات الأكاديمية -->
+<div class="grid2" style="margin-top:12px;">
+<div>
+<label>نوع المؤهل السابق *</label>
+<select name="prevDegree" required>
+<option value="">اختر...</option><option>ثانوي</option><option>دبلوم</option><option>بكالوريوس</option><option>ماجستير</option>
+</select>
+<label>سنة التخرج *</label>
+<input type="number" name="gradYear" min="1900" max="2100" required>
+<label>اسم المدرسة / الجامعة السابقة</label>
+<input type="text" name="prevInstitute">
+<label>النسبة / المعدل</label>
+<input type="text" name="gpa">
+</div>
+<div>
+<label>التخصص المطلوب *</label>
+<input type="text" name="desiredMajor" required>
+<label>نوع الدراسة *</label>
+<select name="studyType" required>
+<option>انتظام</option><option>انتساب</option><option>تعليم عن بعد</option>
+</select>
+<label>الكليات / الأقسام</label>
+<select name="faculty">
+<option value="">اختر الكلية</option>
+<option>كلية الطب</option>
+<option>كلية الهندسة</option>
+<option>كلية العلوم</option>
+<option>كلية الآداب</option>
+<option>كلية إدارة الأعمال</option>
+<option>كلية الحاسبات</option>
+</select>
+</div>
+</div>
+
+<!-- رفع الملفات -->
+<div class="grid2" style="margin-top:12px;">
+<div>
+<label>صورة الهوية / الإقامة *</label>
+<input type="file" name="fileId" accept="image/*,application/pdf" required>
+<label>صورة الشهادة *</label>
+<input type="file" name="fileCertificate" accept="image/*,application/pdf" required>
+</div>
+<div>
+<label>صورة شخصية *</label>
+<input type="file" name="filePhoto" accept="image/*" required>
+<label>إيصال الدفع</label>
+<input type="file" name="fileReceipt" accept="image/*,application/pdf">
+</div>
+</div>
+
+<!-- رقم الحساب والرسوم -->
+<div class="account-section">
+<button type="button" onclick="navigator.clipboard.writeText('SA1980000857608010276380'); alert('تم نسخ رقم الحساب');">نسخ رقم الحساب</button>
+<span>رسوم الدفع: 1200 ريال</span>
+</div>
+
+<div style="margin-top:10px;">
+<label><input type="checkbox" name="agree" required> أقر بأن جميع البيانات المدخلة صحيحة.</label>
+</div>
+
+<div style="text-align:center;margin-top:18px;">
+<button type="submit" id="submitBtn">إرسال التسجيل</button>
+<button type="button" id="cancelFormBtn">إلغاء</button>
+</div>
 </form>
 
-<div id="successModal" class="success-modal">
-<h3>✅ تم استلام الطلب بنجاح</h3>
-<p>شكرًا لك! تم إرسال بياناتك وسيتم مراجعتها قريباً.</p>
-<button id="closeSuccess" class="btn-primary">حسناً</button>
-</div>
-
 <script>
-function showForm(){
-  document.getElementById('registrationForm').style.display='block';
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-document.getElementById('copyAccountBtn').addEventListener('click',()=>{
-  navigator.clipboard.writeText("1234567890");
-  alert("تم نسخ رقم الحساب");
-});
-document.getElementById('cancelBtn').addEventListener('click',()=>{
-  document.getElementById('registrationForm').style.display='none';
-});
-document.getElementById('closeSuccess').addEventListener('click',()=>{
-  document.getElementById('successModal').style.display='none';
-});
-document.getElementById('registrationForm').addEventListener('submit',function(e){
-  e.preventDefault();
-  const form=this;
-  fetch(form.action,{method:'POST',body:new FormData(form)})
-  .then(()=>{form.reset();form.style.display='none';
-    document.getElementById('successModal').style.display='block';})
-  .catch(()=>alert('حدث خطأ أثناء الإرسال'));
+// ضع هنا id الزر الخاص بك
+const userBtnId = 'YOUR_BUTTON_ID'; 
+const btn = document.getElementById(userBtnId);
+const form = document.getElementById('registrationForm');
+const cancelBtn = document.getElementById('cancelFormBtn');
+
+btn.addEventListener('click', e=>{e.preventDefault();form.style.display='block';form.scrollIntoView({behavior:'smooth'});});
+cancelBtn.addEventListener('click', ()=>{form.style.display='none';});
+
+form.addEventListener('submit', function(e){
+e.preventDefault();
+const fd = new FormData(form);
+fetch(form.action,{method:'POST',body:fd,headers:{'Accept':'application/json'}})
+.then(response=>{
+if(response.ok){alert('تم إرسال الطلب بنجاح. ستصلك رسالة تأكيد على بريدك.');form.reset();form.style.display='none';}
+else{alert('لم يتم إرسال الطلب — تحقق من الكونسول.');}
+})
+.catch(err=>{console.error(err);alert('حدث خطأ في الاتصال.');});
 });
 </script>
-
-</body>
-</html>
 </body>
 </html>
 
