@@ -251,7 +251,7 @@
             }, 1500);
     
 </script>
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -261,147 +261,110 @@
 
 <style>
 :root {
-  --primary-green: #0f6b3f;
-  --accent-gold: #c99a2a;
-  --bg: #f4f9f6;
+  --primary-green: #115c3a;
+  --accent-gold: #c8a041;
+  --bg-light: #f7faf8;
   --card: #ffffff;
-  --shadow: 0 8px 20px rgba(0,0,0,0.08);
-  --muted: #55606a;
+  --shadow: 0 8px 20px rgba(0,0,0,0.1);
+  --muted: #5a645a;
+  --error: #b91c1c;
   --success: #059669;
-  --error: #d32f2f;
 }
 
 body {
-  background: var(--bg);
   font-family: 'Noto Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
   margin: 0;
-  padding: 0;
-  line-height: 1.5;
+  background: linear-gradient(135deg, var(--primary-green), var(--accent-gold));
+  min-height: 100vh;
+  color: #222;
 }
 
 header {
-  background: linear-gradient(90deg, var(--primary-green), #1a7a47);
-  color: white;
   text-align: center;
-  padding: 20px;
+  padding: 25px 10px;
+  color: white;
 }
 header img {
-  max-height: 80px;
-  display: block;
-  margin: 0 auto 10px;
+  height: 90px;
 }
+header h1 {
+  font-size: 26px;
+  margin-top: 10px;
+}
+
 .container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px;
-}
-h1 {
-  text-align: center;
-  color: var(--primary-green);
-  margin-bottom: 30px;
-}
-.card {
+  max-width: 950px;
+  margin: 30px auto;
   background: var(--card);
-  padding: 20px;
-  border-radius: 12px;
+  border-radius: 16px;
   box-shadow: var(--shadow);
-  margin-bottom: 20px;
+  padding: 25px;
 }
-.card h2 {
-  color: var(--primary-green);
-  margin-bottom: 12px;
-  font-size: 18px;
-  border-bottom: 1px solid rgba(15,107,63,0.1);
-  padding-bottom: 6px;
+
+.btn {
+  display: inline-block;
+  background: linear-gradient(90deg, var(--primary-green), #1a7a47);
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+  font-size: 15px;
 }
-label {
-  display: block;
-  font-weight: 700;
-  margin-bottom: 6px;
-  font-size: 14px;
-}
-input, select, textarea {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #e6f0ea;
-  font-size: 14px;
-  background: #fff;
-}
-textarea { min-height: 100px; resize: vertical; }
+.btn:hover { opacity: 0.9; }
+
 .row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
-  margin-bottom: 12px;
 }
-@media(max-width:700px){ .row { grid-template-columns:1fr; } }
-.btn {
-  background: linear-gradient(90deg, var(--primary-green), #1a7a47);
-  color: white;
-  padding: 12px 18px;
-  border-radius: 10px;
-  border: 0;
-  cursor: pointer;
+@media (max-width:700px) { .row { grid-template-columns: 1fr; } }
+
+label {
   font-weight: 700;
-  transition: 0.3s;
-  text-align: center;
-}
-.btn:hover { opacity: 0.9; }
-.btn.secondary {
-  background: transparent;
-  color: var(--primary-green);
-  border: 1px solid rgba(15,107,63,0.3);
-}
-.file-preview {
-  margin-top: 10px;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-.file-preview img {
-  max-width: 120px;
-  border-radius: 8px;
-  border: 1px solid #e6eef0;
-}
-.pay-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 0;
-  border-bottom: 1px dashed rgba(15,107,63,0.1);
-}
-.pay-row:last-child { border-bottom: 0; }
-.mono {
-  font-family: monospace;
-  background: #fbfff8;
-  padding: 6px 8px;
-  border-radius: 8px;
-  border: 1px solid #eef6f0;
-}
-.summary {
-  background: linear-gradient(180deg, #fff, #fbfff8);
-  border: 1px solid rgba(15,107,63,0.05);
-  padding: 12px;
-  border-radius: 8px;
-  margin-top: 12px;
   font-size: 14px;
-  color: var(--muted);
+  margin-bottom: 6px;
+  display: block;
 }
-.success-msg, .error-msg {
-  padding: 12px;
+input, select {
+  width: 100%;
+  padding: 10px;
   border-radius: 8px;
-  margin-top: 12px;
-  font-weight: 700;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+.card {
+  margin-bottom: 25px;
+}
+.card h2 {
+  color: var(--primary-green);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding-bottom: 6px;
+  margin-bottom: 15px;
+}
+.file-section {
+  background: #f9faf9;
+  border-radius: 10px;
+  padding: 15px;
+  border: 1px solid #e5e9e6;
+  margin-bottom: 15px;
 }
 .success-msg {
-  background: rgba(5,150,105,0.12);
-  border-left: 5px solid var(--success);
+  background: rgba(5,150,105,0.1);
   color: var(--success);
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-top: 15px;
+  text-align: center;
 }
-.error-msg {
-  background: rgba(211,47,47,0.12);
-  border-left: 5px solid var(--error);
+#error-msg {
   color: var(--error);
+  font-weight: bold;
+  margin-top: 8px;
+  text-align: center;
 }
 </style>
 </head>
@@ -410,124 +373,115 @@ textarea { min-height: 100px; resize: vertical; }
 
 <header>
   <img src="https://upload.wikimedia.org/wikipedia/ar/f/f4/King_Faisal_University_Logo.png" alt="شعار جامعة الملك فيصل">
-  <h1>نموذج تسجيل الطلاب - جامعة الملك فيصل</h1>
+  <h1>جامعة الملك فيصل</h1>
 </header>
 
-<div class="container">
-  <div id="registration-form">
-    <div class="card">
-    <form id="regForm" autocomplete="on" novalidate>
-
-      <h2>1. البيانات الشخصية</h2>
-      <div class="row">
-        <div><label>الاسم الكامل (كما في الهوية)</label><input required></div>
-        <div><label>الاسم بالإنجليزية (اختياري)</label><input></div>
-      </div>
-      <div class="row">
-        <div><label>رقم الهوية / الإقامة</label><input required></div>
-        <div><label>رقم الجوال</label><input placeholder="05xxxxxxxx" required pattern="05[0-9]{8}"></div>
-      </div>
-      <div class="row">
-        <div><label>الجنس</label>
-          <select required><option value="">-- اختر --</option><option>ذكر</option><option>أنثى</option></select>
-        </div>
-        <div><label>الجنسية</label>
-          <select required>
-            <option value="">-- اختر --</option>
-            <option>السعودية</option><option>اليمن</option><option>مصر</option>
-            <option>الأردن</option><option>الإمارات</option><option>قطر</option><option>دول أخرى</option>
-          </select>
-        </div>
-      </div>
-      <div><label>البريد الإلكتروني</label><input type="email" required></div>
-
-      <h2>2. بيانات الدراسة / العمل</h2>
-      <div class="row">
-        <div><label>الكلية</label>
-          <select required>
-            <option value="">-- اختر الكلية --</option>
-            <option>كلية الطب</option><option>كلية الهندسة</option>
-            <option>كلية إدارة الأعمال</option><option>كلية الحاسب الآلي</option>
-          </select>
-        </div>
-        <div><label>التخصص</label><input required></div>
-      </div>
-      <div><label>الحالة الدراسية</label>
-        <select required><option value="">-- اختر الحالة --</option><option>طالب مستمر</option><option>خريج</option><option>متقدم جديد</option></select>
-      </div>
-
-      <h2>3. العنوان وبيانات الطوارئ</h2>
-      <div class="row">
-        <div><label>المدينة</label><input required></div>
-        <div><label>العنوان الكامل</label><input required></div>
-      </div>
-
-      <h2>4. رفع الملفات</h2>
-      <div><label>رفع شهادة أو إيصال (PDF أو صورة)</label><input type="file" id="proof" accept="image/*,application/pdf" required></div>
-      <div class="file-preview" id="preview"></div>
-
-      <h2>5. الدفع البنكي</h2>
-      <div class="row">
-        <div><label>طريقة الدفع</label><select required><option value="">-- اختر --</option><option>تحويل بنكي</option></select></div>
-        <div><label>الرسوم (ر.س)</label><input value="1200" readonly></div>
-      </div>
-
-      <div class="card">
-        <h3>بيانات الدفع الرسمية</h3>
-        <div class="pay-row"><div>البنك</div><div>البنك الأهلي السعودي</div></div>
-        <div class="pay-row"><div>IBAN</div><div class="mono">SA19 8000 0857 6080 1027 6380</div></div>
-        <div class="summary">بعد إتمام التسجيل، سيتم مراجعة المستندات والتحقق من الدفع.</div>
-      </div>
-
-      <div style="display:flex;gap:10px;margin-top:12px">
-        <button type="button" class="btn" id="sendBtn">إرسال التسجيل</button>
-        <button type="reset" class="btn secondary">مسح البيانات</button>
-      </div>
-
-      <div id="msg"></div>
-
-    </form>
-    </div>
+<div class="container" id="login-section">
+  <h2 style="text-align:center;color:var(--primary-green);">تسجيل الدخول</h2>
+  <div style="text-align:center;margin:25px 0;">
+    <button class="btn" id="newStudentBtn"><i class="fas fa-user-graduate"></i> طالب جديد</button>
   </div>
 </div>
 
+<div class="container" id="form-section" style="display:none;">
+  <form id="studentForm">
+
+    <div class="card">
+      <h2>البيانات الشخصية</h2>
+      <div class="row">
+        <div><label>الاسم الكامل</label><input id="name" required></div>
+        <div><label>الاسم بالإنجليزية</label><input id="name_en" required></div>
+      </div>
+      <div class="row">
+        <div><label>رقم الهوية / الإقامة</label><input id="id_number" required></div>
+        <div><label>رقم الجوال</label><input id="phone" type="tel" placeholder="05xxxxxxxx" required></div>
+      </div>
+      <div class="row">
+        <div><label>البريد الإلكتروني</label><input id="email" type="email" required></div>
+        <div>
+          <label>الجنس</label>
+          <select id="gender" required><option value="">-- اختر --</option><option>ذكر</option><option>أنثى</option></select>
+        </div>
+      </div>
+      <div>
+        <label>الجنسية</label>
+        <select id="nationality" required>
+          <option value="">-- اختر الدولة --</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>البيانات الدراسية</h2>
+      <div class="row">
+        <div><label>الكلية</label><input id="college" required></div>
+        <div><label>التخصص</label><input id="major" required></div>
+      </div>
+      <label>الحالة الدراسية</label>
+      <select id="status" required>
+        <option value="">-- اختر --</option>
+        <option>طالب مستمر</option>
+        <option>خريج</option>
+        <option>متقدم جديد</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <h2>رفع الملفات</h2>
+      <div class="file-section">
+        <label>رفع صورة الهوية</label>
+        <input type="file" id="id_upload" accept="image/*" required>
+      </div>
+      <div class="file-section">
+        <label>رفع صورة الشهادة</label>
+        <input type="file" id="certificate_upload" accept="image/*" required>
+      </div>
+    </div>
+
+    <div style="text-align:center;">
+      <button type="submit" class="btn">إرسال الطلب</button>
+      <div id="error-msg"></div>
+      <div id="success-msg" class="success-msg" style="display:none;">✅ تم استلام طلبك بنجاح!</div>
+    </div>
+
+  </form>
+</div>
+
 <script>
-const proof=document.getElementById('proof');
-const preview=document.getElementById('preview');
-proof.addEventListener('change',e=>{
-  preview.innerHTML='';
-  const file=e.target.files[0];
-  if(!file) return;
-  if(file.type.startsWith('image/')){
-    const img=document.createElement('img');
-    img.src=URL.createObjectURL(file);
-    preview.appendChild(img);
-  }else{
-    const span=document.createElement('span');
-    span.textContent='تم رفع الملف: '+file.name;
-    preview.appendChild(span);
-  }
+const countries = ["السعودية","اليمن","مصر","الإمارات","الأردن","قطر","الكويت","البحرين","عُمان","سوريا","العراق","لبنان","فلسطين","تونس","الجزائر","المغرب","السودان","الصومال","ليبيا","موريتانيا","جيبوتي","تركيا","أمريكا","بريطانيا","كندا","فرنسا","ألمانيا","الهند","باكستان","إندونيسيا","ماليزيا","الفلبين","أفغانستان","إيران","تشاد","نيجيريا","إثيوبيا","إريتريا","أستراليا","الصين","اليابان","كوريا","روسيا","إيطاليا","إسبانيا","أوكرانيا","البرازيل","الأرجنتين","جنوب أفريقيا","دول أخرى"];
+const select = document.getElementById("nationality");
+countries.forEach(c => {
+  const opt = document.createElement("option");
+  opt.textContent = c;
+  select.appendChild(opt);
 });
 
-const sendBtn=document.getElementById('sendBtn');
-const msg=document.getElementById('msg');
-const regForm=document.getElementById('regForm');
+document.getElementById("newStudentBtn").addEventListener("click", ()=>{
+  document.getElementById("login-section").style.display = "none";
+  document.getElementById("form-section").style.display = "block";
+  window.scrollTo({top:0,behavior:'smooth'});
+});
 
-sendBtn.addEventListener('click',()=>{
-  msg.innerHTML='';
-  if(!regForm.checkValidity()){
-    msg.innerHTML='<div class="error-msg">⚠️ يرجى تعبئة جميع الحقول المطلوبة قبل الإرسال.</div>';
-    regForm.reportValidity();
-    return;
+document.getElementById("studentForm").addEventListener("submit",(e)=>{
+  e.preventDefault();
+  const inputs = document.querySelectorAll("#studentForm input, #studentForm select");
+  let valid = true;
+  inputs.forEach(el => { if(!el.value) valid=false; });
+  const err = document.getElementById("error-msg");
+  const succ = document.getElementById("success-msg");
+  if(!valid){
+    err.textContent = "الرجاء تعبئة جميع الحقول المطلوبة.";
+    succ.style.display="none";
+  } else {
+    err.textContent="";
+    succ.style.display="block";
+    window.scrollTo({top:succ.offsetTop,behavior:'smooth'});
   }
-  msg.innerHTML='<div class="success-msg">✅ تم استلام طلبك بنجاح! سيتم التواصل معك قريباً لمراجعة المستندات.</div>';
-  regForm.scrollIntoView({behavior:"smooth"});
 });
 </script>
 
 </body>
 </html>
-    
 </body>
 </html>
 
