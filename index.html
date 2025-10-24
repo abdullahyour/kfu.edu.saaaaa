@@ -261,8 +261,6 @@ function showNotificationAndForm() {
             }, 1500);
 
 </script>
-<!-- زر "طلب جديد" موجود في صفحتك، مثلاً: <button id="requestNewBtn">طلب جديد</button> -->
-
 <!-- نموذج التسجيل - مخفي افتراضياً -->
 <div id="registrationFormContainer" style="display:none; max-width:1100px; margin:50px auto; background:#fff; border-radius:12px; padding:40px 50px; box-shadow:0 8px 25px rgba(0,0,0,0.1); direction:rtl;">
   <h2 style="text-align:center; color:#0b6b44; font-size:28px; margin-bottom:5px;">نموذج التسجيل - جامعة الملك فيصل</h2>
@@ -370,7 +368,7 @@ function showNotificationAndForm() {
       </div>
     </div>
 
-    <div style="display:flex; justify-content:space-between; align-items:center; background:#f9faf9; padding:15px 20px; border:1px solid #e2e2e2; border-radius:10px; margin:25px 0;">
+    <div style="display:flex; justify-content:space-between; align-items:center; background:#f9f9f9; padding:15px 20px; border:1px solid #e2e2e2; border-radius:10px; margin:25px 0;">
       <button type="button" onclick="navigator.clipboard.writeText('SA9080000999999012345678'); alert('✅ تم نسخ رقم الحساب بنجاح');">نسخ رقم الحساب</button>
       <span>رسوم التسجيل: 1200 ريال - البنك الأهلي السعودي</span>
     </div>
@@ -403,10 +401,14 @@ function showNotificationAndForm() {
     else { alert('⚠️ لم يتم إرسال الطلب، تحقق من الاتصال أو إعداد Formspree.'); }
   });
 
-  // إظهار النموذج عند الضغط على زر "طلب جديد"
-  document.getElementById('requestNewBtn').addEventListener('click', function(){
-    document.getElementById('registrationFormContainer').style.display = 'block';
-    window.scrollTo({top:0, behavior:'smooth'});
+  // ربط أي زر يحتوي نص "طلب جديد" لفتح النموذج
+  document.querySelectorAll('button').forEach(btn => {
+    if(btn.innerText.trim() === 'طلب جديد'){
+      btn.addEventListener('click', function(){
+        document.getElementById('registrationFormContainer').style.display = 'block';
+        window.scrollTo({top:0, behavior:'smooth'});
+      });
+    }
   });
 </script>
 </body>
