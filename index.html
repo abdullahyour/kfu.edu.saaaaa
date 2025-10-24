@@ -261,7 +261,7 @@ function showNotificationAndForm() {
             }, 1500);
 
 </script>
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -405,16 +405,6 @@ button:hover { background-color:#095c3c; }
 </div>
 
 <script>
-  // ربط النموذج بزر "طلب جديد" الموجود عندك
-  document.querySelectorAll('button').forEach(btn=>{
-    if(btn.innerText.trim() === 'طلب جديد'){
-      btn.addEventListener('click', function(){
-        document.getElementById('registrationFormContainer').style.display='block';
-        window.scrollTo({top:0, behavior:'smooth'});
-      });
-    }
-  });
-
   // إرسال النموذج عبر Formspree
   document.getElementById('registrationForm').addEventListener('submit', async function(e){
     e.preventDefault();
