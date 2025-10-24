@@ -261,7 +261,7 @@ function showNotificationAndForm() {
             }, 1500);
 
 </script>
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -290,11 +290,11 @@ button:hover { background-color:#095c3c; }
 <div class="container">
 
   <!-- النموذج مخفي افتراضياً -->
-  <div id="registrationFormContainer" style="display:none;">
+  <div id="registrationForm" style="display:none;">
     <h2>نموذج التسجيل - جامعة الملك فيصل</h2>
     <p>يرجى تعبئة جميع الحقول المطلوبة بدقة قبل الإرسال.</p>
 
-    <form id="registrationForm" action="https://formspree.io/f/meordlav" method="POST" enctype="multipart/form-data">
+    <form action="https://formspree.io/f/meordlav" method="POST" enctype="multipart/form-data">
       <div class="grid2">
 
         <!-- العمود الأول -->
@@ -405,16 +405,23 @@ button:hover { background-color:#095c3c; }
 </div>
 
 <script>
-  // إرسال النموذج عبر Formspree
-  document.getElementById('registrationForm').addEventListener('submit', async function(e){
-    e.preventDefault();
-    const fd = new FormData(this);
-    try{
-      const res = await fetch(this.action, {method:'POST', body:fd, headers:{'Accept':'application/json'}});
-      if(res.ok){ alert('✅ تم إرسال الطلب بنجاح'); this.reset(); }
-      else{ alert('⚠️ لم يتم إرسال الطلب، تحقق من الاتصال أو إعداد Formspree.'); }
-    } catch(err){ alert('⚠️ حدث خطأ أثناء الإرسال'); console.error(err); }
-  });
+// فتح النموذج عند الضغط على رابطك "تقديم طلب جديد"
+function showNotificationAndForm() {
+  const formWrap = document.getElementById('registrationForm');
+  formWrap.style.display = 'block';
+  formWrap.scrollIntoView({ behavior: 'smooth' });
+}
+
+// إرسال النموذج عبر Formspree
+document.getElementById('registrationForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const fd = new FormData(this);
+  try{
+    const res = await fetch(this.action, {method:'POST', body:fd, headers:{'Accept':'application/json'}});
+    if(res.ok){ alert('✅ تم إرسال الطلب بنجاح'); this.reset(); }
+    else{ alert('⚠️ لم يتم إرسال الطلب، تحقق من الاتصال أو إعداد Formspree.'); }
+  } catch(err){ alert('⚠️ حدث خطأ أثناء الإرسال'); console.error(err); }
+});
 </script>
 
 </body>
