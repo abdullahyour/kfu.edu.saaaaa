@@ -274,6 +274,7 @@ function showNotificationAndForm() {
   --gold:#d4af37;
   --card:#ffffff;
   --muted:#6b6b6b;
+  --bg:#e6f2eb;
 }
 *{box-sizing:border-box;}
 body{
@@ -281,7 +282,7 @@ body{
   font-family:"Cairo", "Segoe UI", Tahoma, sans-serif;
   color:#222;
   direction:rtl;
-  background:#ffffff;
+  background:var(--bg);
 }
 .container{
   max-width:1150px;
@@ -335,8 +336,6 @@ textarea{min-height:96px; resize:vertical;}
 </style>
 </head>
 <body>
-
-<button id="showFormBtn" class="btn" style="margin:20px;">تقديم طلب جديد</button>
 
 <div class="container" id="registrationForm">
 <header>
@@ -477,23 +476,35 @@ textarea{min-height:96px; resize:vertical;}
 </div>
 
 <script>
-const formContainer = document.getElementById('registrationForm');
-const showFormBtn = document.getElementById('showFormBtn');
+// عرض النموذج فقط عند الضغط على زر "تقديم طلب جديد"
+document.addEventListener('DOMContentLoaded',()=>{
+  const form=document.getElementById('registrationForm');
+  const trigger=document.querySelector('.quick-link'); 
+  trigger.addEventListener('click',e=>{
+    e.preventDefault();
+    form.style.display='block';
+    form.scrollIntoView({behavior:'smooth'});
+  });
 
-showFormBtn.addEventListener('click', ()=> formContainer.style.display='block');
+  // إخفاء النموذج عند الضغط خارج
+  document.addEventListener('click', e=>{
+    if(form.style.display==='block' && !form.contains(e.target) && e.target!==trigger){
+      form.style.display='none';
+    }
+  });
 
-document.addEventListener('click', (e)=>{
-  if(!formContainer.contains(e.target) && e.target!==showFormBtn){
-    formContainer.style.display='none';
-  }
-});
-
-document.getElementById('copyAccountBtn').addEventListener('click', ()=>{
-  const text = 'SA1980000857608010276380 - بنك الأهلي السعودي';
-  navigator.clipboard.writeText(text).then(()=>alert('✅ تم نسخ رقم الحساب: ' + text));
+  // النسخ
+  document.getElementById('copyAccountBtn').addEventListener('click',()=>{
+    const el=document.createElement('textarea');
+    el.value='SA1980000857608010276380';
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    alert('تم نسخ رقم الحساب!');
+  });
 });
 </script>
-
 </body>
 </html>
 </body>
