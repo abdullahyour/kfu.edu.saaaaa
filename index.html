@@ -272,7 +272,6 @@ function showNotificationAndForm() {
 :root{
   --uf-green:#0b6b44;
   --gold:#d4af37;
-  --bg:#f5f6f8;
   --card:#ffffff;
   --muted:#6b6b6b;
 }
@@ -280,7 +279,6 @@ function showNotificationAndForm() {
 body{
   margin:0;
   font-family:"Cairo", "Segoe UI", Tahoma, sans-serif;
-  background:var(--bg);
   color:#222;
   direction:rtl;
 }
@@ -334,6 +332,8 @@ textarea{min-height:96px; resize:vertical;}
 </head>
 <body>
 
+<!-- النموذج مخفي افتراضياً -->
+<div class="container" id="registrationForm" style="display:none;">
 <header>
   <div class="brand">
     <div class="logo">FKU</div>
@@ -342,17 +342,9 @@ textarea{min-height:96px; resize:vertical;}
       <p class="subtitle">يرجى تعبئة جميع الحقول بدقة وإرفاق الملفات المطلوبة قبل الإرسال.</p>
     </div>
   </div>
-  <div style="text-align:left">
-    <div class="bank-name">رقم الحساب للتحويل</div>
-    <div style="font-weight:800;color:var(--uf-green);">SA9080000999999012345678</div>
-    <div style="font-size:13px;color:#666;margin-top:6px">البنك الأهلي السعودي — رسوم التسجيل: <span style="font-weight:800;color:#000">1200 ريال</span></div>
-  </div>
 </header>
 
-<!-- زر تقديم الطلب موجود عندك -->
-<!-- النموذج مخفي بشكل افتراضي -->
-<div class="container">
-<form id="registrationForm" action="https://formspree.io/f/meordlav" method="POST" enctype="multipart/form-data" style="display:none;" novalidate>
+<form action="https://formspree.io/f/meordlav" method="POST" enctype="multipart/form-data" novalidate>
   <div class="grid2">
     <div>
       <label>الاسم الكامل (رباعي) *</label>
@@ -422,6 +414,7 @@ textarea{min-height:96px; resize:vertical;}
       </select>
       <label>هل لديك أي حالة طبية هامة؟ (إن وُجد)</label>
       <input type="text" name="medicalInfo" placeholder="اكتب إذا كان هناك أمر طبي مهم">
+
       <div class="section-title">جهة الاتصال في حالات الطوارئ</div>
       <label>اسم جهة الاتصال للطوارئ</label>
       <input type="text" name="emergencyName" placeholder="اسم قريب أو شخص">
@@ -432,36 +425,42 @@ textarea{min-height:96px; resize:vertical;}
     </div>
   </div>
 
-  <div class="section-title">المرفقات المطلوبة</div>
-  <div class="files-row" style="margin-top:8px;">
-    <div>
-      <label>صورة الهوية / الإقامة *</label>
-      <input type="file" name="fileId" accept="image/*,application/pdf" required>
+  <!-- الملفات -->
+  <div style="margin-top:18px">
+    <div class="section-title">المرفقات المطلوبة</div>
+    <div class="files-row" style="margin-top:8px;">
+      <div>
+        <label>صورة الهوية / الإقامة *</label>
+        <input type="file" name="fileId" accept="image/*,application/pdf" required>
+      </div>
+      <div>
+        <label>صورة الشهادة / المؤهل *</label>
+        <input type="file" name="fileCertificate" accept="image/*,application/pdf" required>
+      </div>
     </div>
-    <div>
-      <label>صورة الشهادة / المؤهل *</label>
-      <input type="file" name="fileCertificate" accept="image/*,application/pdf" required>
-    </div>
-  </div>
-  <div class="files-row" style="margin-top:12px;">
-    <div>
-      <label>صورة شخصية (مقاس - واضح) *</label>
-      <input type="file" name="filePhoto" accept="image/*" required>
-    </div>
-    <div>
-      <label>إيصال الدفع (إن وُجد)</label>
-      <input type="file" name="fileReceipt" accept="image/*,application/pdf">
+
+    <div class="files-row" style="margin-top:12px;">
+      <div>
+        <label>صورة شخصية (مقاس - واضح) *</label>
+        <input type="file" name="filePhoto" accept="image/*" required>
+      </div>
+      <div>
+        <label>إيصال الدفع (إن وُجد)</label>
+        <input type="file" name="fileReceipt" accept="image/*,application/pdf">
+      </div>
     </div>
   </div>
 
+  <!-- الحساب والنسخ -->
   <div class="account-section" style="margin-top:18px">
     <div class="account-left">
       <div>
-        <div style="font-size:13px;color:#666">لتحويل الرسوم استخدم:</div>
-        <div style="font-weight:800;color:var(--uf-green);">SA9080000999999012345678</div>
-        <div class="bank-name">البنك الأهلي السعودي</div>
+        <div style="font-size:13px;color:#666">لتحويل الرسوم استخدمي:</div>
+        <div style="font-weight:800;color:var(--uf-green);">SA1980000857608010276380</div>
+        <div style="font-size:13px;color:#444" class="bank-name">بنك الأهلي السعودي</div>
       </div>
     </div>
+
     <div style="display:flex;align-items:center;gap:12px">
       <div class="fees">رسوم التسجيل: 1200 ريال</div>
       <button type="button" class="copy-btn" id="copyAccountBtn">نسخ رقم الحساب</button>
@@ -482,38 +481,56 @@ textarea{min-height:96px; resize:vertical;}
 </div>
 
 <script>
-// نسخ رقم الحساب
-document.getElementById('copyAccountBtn').addEventListener('click', function(){
-  const text = 'SA9080000999999012345678 - البنك الأهلي السعودي';
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text).then(()=>{alert('✅ تم نسخ رقم الحساب: ' + text);}).catch(()=>{prompt('انسخ رقم الحساب يدوياً:', text);});
-  }else{prompt('انسخ رقم الحساب يدوياً:', text);}
-});
-
-// إرسال النموذج عبر Formspree
-document.getElementById('registrationForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  const fd = new FormData(this);
-  fetch(this.action,{
-    method:'POST',
-    body:fd,
-    headers:{'Accept':'application/json'}
-  }).then(response=>{
-    if(response.ok){
-      alert('✅ تم إرسال الطلب بنجاح، ستصلك رسالة تأكيد على بريدك الإلكتروني.');
-      this.reset();
-      this.style.display='none';
+  // Copy account button behavior
+  document.getElementById('copyAccountBtn').addEventListener('click', function(){
+    const text = 'SA1980000857608010276380 - بنك الأهلي السعودي';
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(()=> {
+        alert('✅ تم نسخ رقم الحساب: ' + text);
+      }).catch(()=> {
+        prompt('انسخ رقم الحساب يدوياً:', text);
+      });
     }else{
-      alert('⚠️ لم يتم إرسال الطلب، تحقق من الاتصال أو إعداد Formspree.');
+      prompt('انسخ رقم الحساب يدوياً:', text);
     }
-  }).catch(err=>{
-    console.error(err);
-    alert('حدث خطأ أثناء الإرسال، حاول/حاولي مرة أخرى لاحقًا.');
   });
-});
+
+  // Form submit using Formspree
+  document.getElementById('registrationForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const fd = new FormData(this);
+
+    fetch(this.action, {
+      method: 'POST',
+      body: fd,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        alert('✅ تم إرسال الطلب بنجاح، ستصلك رسالة تأكيد على بريدك الإلكتروني.');
+        this.reset();
+      } else {
+        alert('⚠️ لم يتم إرسال الطلب، تحقق من الاتصال أو إعداد Formspree.');
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      alert('حدث خطأ أثناء الإرسال، حاول/حاولي مرة أخرى لاحقًا.');
+    });
+  });
+
+  // ربط النموذج بالزر الموجود في موقعك
+  // الزر في موقعك يجب أن يكون مثل:
+  // <a href="#" class="quick-link" onclick="showForm()">تقديم طلب جديد</a>
+  function showForm(){
+    const formWrap = document.getElementById('registrationForm');
+    formWrap.style.display = 'block';
+    formWrap.scrollIntoView({ behavior: 'smooth' });
+  }
 </script>
+
 </body>
-</html>
+    </html>
 </body>
 </html>
 
