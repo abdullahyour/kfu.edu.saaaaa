@@ -288,16 +288,27 @@ button:hover { background-color:#095c3c; }
 <body>
 
 <div class="container">
-  <button data-open-form="registration" style="margin-bottom:30px;">طلب جديد</button>
 
+  <!-- النموذج مخفي افتراضياً -->
   <div id="registrationFormContainer" style="display:none;">
     <h2>نموذج التسجيل - جامعة الملك فيصل</h2>
     <p>يرجى تعبئة جميع الحقول المطلوبة بدقة قبل الإرسال.</p>
 
     <form id="registrationForm" action="https://formspree.io/f/meordlav" method="POST" enctype="multipart/form-data">
       <div class="grid2">
+
+        <!-- العمود الأول -->
         <div>
-          <label>الاسم الكامل *</label><input type="text" name="fullName" required>
+          <label>الاسم الكامل (رباعي) *</label>
+          <input type="text" name="fullName" required>
+
+          <label>الجنس *</label>
+          <select name="gender" required>
+            <option value="">اختر...</option>
+            <option>ذكر</option>
+            <option>أنثى</option>
+          </select>
+
           <label>الجنسية *</label>
           <select name="nationality" required>
             <option value="">اختر الجنسية</option>
@@ -309,36 +320,71 @@ button:hover { background-color:#095c3c; }
             <option>فلسطين</option><option>لبنان</option><option>السودان</option>
             <option>موريتانيا</option>
           </select>
-          <label>تاريخ الميلاد *</label><input type="date" name="birthDate" required>
-          <label>المدينة *</label><input type="text" name="city" required>
-          <label>رقم الهوية / الإقامة *</label><input type="text" name="idNumber" required>
+
+          <label>تاريخ الميلاد *</label>
+          <input type="date" name="birthDate" required>
+
+          <label>رقم الهوية / الإقامة *</label>
+          <input type="text" name="idNumber" required>
+
           <label>نوع المؤهل السابق *</label>
           <select name="prevDegree" required>
             <option>ثانوي</option><option>دبلوم</option><option>بكالوريوس</option><option>ماجستير</option>
           </select>
-          <label>سنة التخرج *</label><input type="number" name="gradYear" min="1900" max="2100" required>
-          <label>اسم المدرسة / الجامعة السابقة</label><input type="text" name="prevInstitute">
-          <label>النسبة / المعدل</label><input type="text" name="gpa">
-          <label>صورة الهوية / الإقامة *</label><input type="file" name="fileId" accept="image/*,application/pdf" required>
-          <label>صورة الشهادة *</label><input type="file" name="fileCertificate" accept="image/*,application/pdf" required>
+
+          <label>سنة التخرج *</label>
+          <input type="number" name="gradYear" min="1900" max="2100" required>
+
+          <label>اسم المدرسة / الجامعة السابقة</label>
+          <input type="text" name="prevInstitute">
+
+          <label>النسبة / المعدل</label>
+          <input type="text" name="gpa">
+
+          <label>صورة الهوية / الإقامة *</label>
+          <input type="file" name="fileId" accept="image/*,application/pdf" required>
+
+          <label>صورة الشهادة *</label>
+          <input type="file" name="fileCertificate" accept="image/*,application/pdf" required>
         </div>
 
+        <!-- العمود الثاني -->
         <div>
-          <label>رقم الجوال *</label><input type="text" name="phone" required>
-          <label>البريد الإلكتروني *</label><input type="email" name="email" required>
-          <label>العنوان بالتفصيل *</label><textarea name="address" required></textarea>
-          <label>التخصص المطلوب *</label><input type="text" name="desiredMajor" required>
+          <label>رقم الجوال *</label>
+          <input type="text" name="phone" required>
+
+          <label>البريد الإلكتروني *</label>
+          <input type="email" name="email" required>
+
+          <label>المدينة *</label>
+          <input type="text" name="city" required>
+
+          <label>العنوان بالتفصيل *</label>
+          <textarea name="address" required></textarea>
+
+          <label>التخصص المطلوب *</label>
+          <input type="text" name="desiredMajor" required>
+
           <label>نوع الدراسة *</label>
-          <select name="studyType" required><option>انتظام</option><option>انتساب</option><option>تعليم عن بعد</option></select>
+          <select name="studyType" required>
+            <option>انتظام</option><option>انتساب</option><option>تعليم عن بعد</option>
+          </select>
+
           <label>الكلية / القسم *</label>
           <select name="faculty" required>
             <option value="">اختر الكلية</option>
-            <option>كلية الطب</option><option>كلية الهندسة</option><option>كلية العلوم</option>
-            <option>كلية الآداب</option><option>كلية إدارة الأعمال</option><option>كلية الحاسبات</option>
+            <option>كلية الطب</option><option>كلية الهندسة</option>
+            <option>كلية العلوم</option><option>كلية الآداب</option>
+            <option>كلية إدارة الأعمال</option><option>كلية الحاسبات</option>
           </select>
-          <label>صورة شخصية *</label><input type="file" name="filePhoto" accept="image/*" required>
-          <label>إيصال الدفع</label><input type="file" name="fileReceipt" accept="image/*,application/pdf">
+
+          <label>صورة شخصية *</label>
+          <input type="file" name="filePhoto" accept="image/*" required>
+
+          <label>إيصال الدفع</label>
+          <input type="file" name="fileReceipt" accept="image/*,application/pdf">
         </div>
+
       </div>
 
       <div class="account-section">
@@ -346,7 +392,9 @@ button:hover { background-color:#095c3c; }
         <span>رسوم التسجيل: 1200 ريال - البنك الأهلي السعودي</span>
       </div>
 
-      <div><label><input type="checkbox" name="agree" required> أقر بأن جميع البيانات المدخلة صحيحة ومطابقة للوثائق الرسمية.</label></div>
+      <div>
+        <label><input type="checkbox" name="agree" required> أقر بأن جميع البيانات المدخلة صحيحة ومطابقة للوثائق الرسمية.</label>
+      </div>
 
       <div class="submit-area">
         <button type="submit">إرسال الطلب</button>
@@ -357,15 +405,17 @@ button:hover { background-color:#095c3c; }
 </div>
 
 <script>
-  // فتح النموذج عند الضغط على زر "طلب جديد"
-  document.querySelectorAll('[data-open-form="registration"]').forEach(btn=>{
-    btn.addEventListener('click', function(){
-      document.getElementById('registrationFormContainer').style.display='block';
-      window.scrollTo({top:0, behavior:'smooth'});
-    });
+  // ربط النموذج بزر "طلب جديد" الموجود عندك
+  document.querySelectorAll('button').forEach(btn=>{
+    if(btn.innerText.trim() === 'طلب جديد'){
+      btn.addEventListener('click', function(){
+        document.getElementById('registrationFormContainer').style.display='block';
+        window.scrollTo({top:0, behavior:'smooth'});
+      });
+    }
   });
 
-  // إرسال النموذج
+  // إرسال النموذج عبر Formspree
   document.getElementById('registrationForm').addEventListener('submit', async function(e){
     e.preventDefault();
     const fd = new FormData(this);
