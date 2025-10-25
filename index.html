@@ -262,166 +262,163 @@ function showNotificationAndForm() {
 
 </script>
 <?php
-$csvFile = 'submissions.csv';
-$uploadDir = 'uploads/';
+// index.php - نموذج + رفع الملفات + حفظ البيانات (مناسب للInfinityFree)
+$uploadDir = __DIR__ . '/uploads/';
+if(!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
 
-// معالجة إرسال النموذج
+$errors = [];
+$success = false;
+
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-
-    if(!is_dir($uploadDir)) mkdir($uploadDir,0777,true);
-
+    // جمع الحقول
     $data = [
-        'fullName'=>$_POST['fullName']??'',
-        'gender'=>$_POST['gender']??'',
-        'nationality'=>$_POST['nationality']??'',
-        'country'=>$_POST['country']??'',
-        'idNumber'=>$_POST['idNumber']??'',
-        'birthDate'=>$_POST['birthDate']??'',
-        'city'=>$_POST['city']??'',
-        'address'=>$_POST['address']??'',
-        'phone'=>$_POST['phone']??'',
-        'email'=>$_POST['email']??'',
-        'prevDegree'=>$_POST['prevDegree']??'',
-        'gradYear'=>$_POST['gradYear']??'',
-        'prevInstitute'=>$_POST['prevInstitute']??'',
-        'gpa'=>$_POST['gpa']??'',
-        'desiredMajor'=>$_POST['desiredMajor']??'',
-        'studyType'=>$_POST['studyType']??'',
-        'faculty'=>$_POST['faculty']??'',
-        'medicalInfo'=>$_POST['medicalInfo']??'',
-        'emergencyName'=>$_POST['emergencyName']??'',
-        'emergencyRelation'=>$_POST['emergencyRelation']??'',
-        'emergencyPhone'=>$_POST['emergencyPhone']??'',
+        'fullName'=>$_POST['fullName'] ?? '',
+        'gender'=>$_POST['gender'] ?? '',
+        'nationality'=>$_POST['nationality'] ?? '',
+        'country'=>$_POST['country'] ?? '',
+        'idNumber'=>$_POST['idNumber'] ?? '',
+        'birthDate'=>$_POST['birthDate'] ?? '',
+        'birthPlace'=>$_POST['birthPlace'] ?? '',
+        'city'=>$_POST['city'] ?? '',
+        'address'=>$_POST['address'] ?? '',
+        'phone'=>$_POST['phone'] ?? '',
+        'email'=>$_POST['email'] ?? '',
+        'prevDegree'=>$_POST['prevDegree'] ?? '',
+        'gradYear'=>$_POST['gradYear'] ?? '',
+        'prevInstitute'=>$_POST['prevInstitute'] ?? '',
+        'gpa'=>$_POST['gpa'] ?? '',
+        'desiredMajor'=>$_POST['desiredMajor'] ?? '',
+        'studyType'=>$_POST['studyType'] ?? '',
+        'faculty'=>$_POST['faculty'] ?? '',
+        'medicalInfo'=>$_POST['medicalInfo'] ?? '',
+        'emergencyName'=>$_POST['emergencyName'] ?? '',
+        'emergencyRelation'=>$_POST['emergencyRelation'] ?? '',
+        'emergencyPhone'=>$_POST['emergencyPhone'] ?? ''
     ];
 
-    // رفع الملفات
+    // رفع الملفات: fileId, fileCertificate, filePhoto, fileReceipt
     $fileFields = ['fileId','fileCertificate','filePhoto','fileReceipt'];
-    foreach($fileFields as $field){
-        if(isset($_FILES[$field]) && $_FILES[$field]['error']==0){
-            $filename = $uploadDir . time().'_'.basename($_FILES[$field]['name']);
-            move_uploaded_file($_FILES[$field]['tmp_name'],$filename);
-            $data[$field]=$filename;
+    foreach($fileFields as $f){
+        if(isset($_FILES[$f]) && $_FILES[$f]['error'] === UPLOAD_ERR_OK){
+            $safeName = time().'_'.preg_replace('/[^A-Za-z0-9_\-\.]/','_', basename($_FILES[$f]['name']));
+            $dest = $uploadDir . $safeName;
+            if(move_uploaded_file($_FILES[$f]['tmp_name'],$dest)){
+                $data[$f] = 'uploads/'.$safeName;
+            } else {
+                $data[$f] = '';
+                $errors[] = "فشل رفع الملف: $f";
+            }
         } else {
-            $data[$field]='';
+            $data[$f] = '';
         }
     }
 
-    // حفظ البيانات في CSV
-    $isNew = !file_exists($csvFile);
-    $fp = fopen($csvFile,'a');
-    if($isNew) fputcsv($fp,array_keys($data));
-    fputcsv($fp,$data);
-    fclose($fp);
-
-    $success = true;
+    // حفظ في CSV
+    if(empty($errors)){
+        $csvFile = __DIR__ . '/data.csv';
+        $isNew = !file_exists($csvFile);
+        $fp = fopen($csvFile,'a');
+        if($isNew) fputcsv($fp, array_keys($data));
+        fputcsv($fp, $data);
+        fclose($fp);
+        $success = true;
+    }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>نموذج التسجيل - جامعة الملك فيصل</title>
 <style>
-body{font-family:"Cairo",sans-serif;background:#f5f6f8;color:#222;margin:0;padding:20px;}
-.container{max-width:1150px;margin:20px auto;background:#fff;padding:36px;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,0.08);display:none;}
-label{display:block;margin-top:12px;}
-input, select, textarea{width:100%;padding:10px;margin-top:4px;border-radius:8px;border:1px solid #ccc;}
-button{background:#0b6b44;color:#fff;padding:12px 24px;border:none;border-radius:8px;margin-top:16px;cursor:pointer;}
-#copyAccountBtn{background:#d4af37;color:#fff;}
-.toast{position:fixed;top:20px;right:20px;background:#0b6b44;color:#fff;padding:12px 18px;border-radius:8px;opacity:0;transform:translateY(-10px);transition:all .4s ease;z-index:999;}
-.toast.show{opacity:1;transform:translateY(0);}
+:root{--uf-green:#0b6b44;--gold:#d4af37;--bg:#f5f6f8;}
+body{font-family:Tahoma,Arial,sans-serif;background:var(--bg);margin:0;padding:20px;direction:rtl}
+.container{max-width:1150px;margin:20px auto;background:#fff;padding:28px;border-radius:12px;border-top:6px solid var(--uf-green)}
+label{display:block;color:var(--uf-green);font-weight:700;margin-top:12px}
+input,select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #ddd;background:#fafafa}
+.btn{background:var(--uf-green);color:#fff;border:none;padding:10px 18px;border-radius:8px;cursor:pointer;margin-top:14px}
+.toast{position:fixed;top:18px;right:18px;background:var(--uf-green);color:#fff;padding:10px 14px;border-radius:8px;display:none}
+.note{margin-top:10px;color:#666}
 </style>
 </head>
 <body>
 
 <div class="toast" id="toast"></div>
 
-<!-- النموذج -->
-<div class="container" id="registrationForm">
-<h1>نموذج التسجيل - جامعة الملك فيصل</h1>
-<form action="" method="POST" enctype="multipart/form-data">
-<label>الاسم الكامل *</label><input type="text" name="fullName" required>
-<label>الجنس *</label><select name="gender" required><option value="">اختر</option><option>ذكر</option><option>أنثى</option></select>
-<label>الجنسية *</label><select name="nationality" required><option value="">اختر</option><option>السعودية</option><option>اليمن</option></select>
-<label>الدولة *</label><select name="country" required><option value="">اختر</option><option>السعودية</option><option>اليمن</option></select>
-<label>رقم الهوية *</label><input type="text" name="idNumber" required>
-<label>تاريخ الميلاد *</label><input type="date" name="birthDate" required>
-<label>المدينة *</label><input type="text" name="city" required>
-<label>العنوان *</label><textarea name="address" required></textarea>
-<label>رقم الجوال *</label><input type="tel" name="phone" required>
-<label>البريد الإلكتروني *</label><input type="email" name="email" required>
-<label>نوع المؤهل السابق *</label><select name="prevDegree" required><option value="">اختر</option><option>ثانوي</option><option>دبلوم</option><option>بكالوريوس</option></select>
-<label>سنة التخرج *</label><input type="number" name="gradYear" required>
-<label>الجامعة السابقة</label><input type="text" name="prevInstitute">
-<label>النسبة / المعدل</label><input type="text" name="gpa">
-<label>التخصص المطلوب *</label><input type="text" name="desiredMajor" required>
-<label>نوع الدراسة *</label><select name="studyType" required><option>انتظام</option><option>انتساب</option></select>
-<label>الكلية / القسم *</label><select name="faculty" required><option>كلية الطب</option><option>كلية الهندسة</option></select>
-<label>الحالة الطبية</label><input type="text" name="medicalInfo">
-
-<h3>جهة الاتصال في حالات الطوارئ</h3>
-<label>الاسم</label><input type="text" name="emergencyName">
-<label>صلة القرابة</label><input type="text" name="emergencyRelation">
-<label>رقم الطوارئ</label><input type="tel" name="emergencyPhone">
-
-<h3>المرفقات المطلوبة</h3>
-<label>صورة الهوية / الإقامة *</label><input type="file" name="fileId" required>
-<label>صورة الشهادة / المؤهل *</label><input type="file" name="fileCertificate" required>
-<label>صورة شخصية *</label><input type="file" name="filePhoto" required>
-<label>إيصال الدفع (إن وجد)</label><input type="file" name="fileReceipt">
-
-<h3>الحساب البنكي</h3>
-<div style="display:flex;align-items:center;gap:12px;">
-    <div>SA1980000857608010276380 - بنك الأهلي السعودي</div>
-    <button type="button" id="copyAccountBtn">نسخ رقم الحساب</button>
+<!-- الزر الخارجي (لو عندك زر في موقع ثاني، لازم يوجه للرابط هذا أو ينفّذ showForm()) -->
+<div style="text-align:center;margin-bottom:12px">
+  <a href="#" onclick="showForm(event)" style="background:#0b6b44;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none">فتح نموذج التسجيل</a>
 </div>
 
-<label><input type="checkbox" name="agree" required> أوافق على صحة البيانات.</label>
-<button type="submit">إرسال الطلب</button>
-</form>
+<div class="container" id="formWrap" style="display:none">
+  <h2 style="color:var(--uf-green)">نموذج التسجيل - جامعة الملك فيصل</h2>
+
+  <?php if(!empty($errors)): ?>
+    <div style="color:#c0392b;font-weight:700"><?= implode(' — ',$errors) ?></div>
+  <?php endif; ?>
+
+  <?php if($success): ?>
+    <div style="color:green;font-weight:700">✅ تم إرسال الطلب بنجاح. شكراً.</div>
+  <?php endif; ?>
+
+  <form method="POST" enctype="multipart/form-data">
+    <label>الاسم الكامل *</label><input name="fullName" required>
+    <label>الجنس *</label><select name="gender" required><option value="">اختر</option><option>ذكر</option><option>أنثى</option></select>
+    <label>الجنسية *</label><input name="nationality" required>
+    <label>الدولة *</label><input name="country" required>
+    <label>رقم الهوية / الإقامة *</label><input name="idNumber" required>
+    <label>تاريخ الميلاد *</label><input type="date" name="birthDate" required>
+    <label>مكان الميلاد</label><input name="birthPlace">
+    <label>المدينة *</label><input name="city" required>
+    <label>العنوان *</label><textarea name="address" required></textarea>
+    <label>رقم الجوال *</label><input name="phone" required>
+    <label>البريد الإلكتروني *</label><input type="email" name="email" required>
+
+    <label>نوع المؤهل السابق *</label><select name="prevDegree" required><option value="">اختر</option><option>ثانوي</option><option>دبلوم</option><option>بكالوريوس</option></select>
+    <label>سنة التخرج *</label><input type="number" name="gradYear" min="1900" max="2100" required>
+    <label>اسم المدرسة / الجامعة السابقة</label><input name="prevInstitute">
+    <label>النسبة / المعدل</label><input name="gpa">
+    <label>التخصص المطلوب *</label><input name="desiredMajor" required>
+    <label>نوع الدراسة *</label><select name="studyType" required><option value="">اختر</option><option>انتظام</option><option>انتساب</option></select>
+    <label>الكلية / القسم *</label><select name="faculty" required><option value="">اختر</option><option>كلية الطب</option><option>كلية الهندسة</option></select>
+    <label>حالة طبية</label><input name="medicalInfo">
+
+    <div style="margin-top:12px;font-weight:800">جهة الاتصال للطوارئ</div>
+    <label>الاسم</label><input name="emergencyName">
+    <label>صلة القرابة</label><input name="emergencyRelation">
+    <label>رقم الطوارئ</label><input name="emergencyPhone">
+
+    <div style="margin-top:12px">
+      <label>صورة الهوية / الإقامة * (jpg/pdf)</label><input type="file" name="fileId" accept="image/*,application/pdf" required>
+      <label>صورة الشهادة / المؤهل * (jpg/pdf)</label><input type="file" name="fileCertificate" accept="image/*,application/pdf" required>
+      <label>الصورة الشخصية * (jpg)</label><input type="file" name="filePhoto" accept="image/*" required>
+      <label>إيصال الدفع (إن وجد)</label><input type="file" name="fileReceipt" accept="image/*,application/pdf">
+    </div>
+
+    <div style="margin-top:12px"><label><input type="checkbox" name="agree" required> أقر بأن البيانات صحيحة</label></div>
+
+    <div class="submit-area">
+      <button type="submit" class="btn">إرسال الطلب</button>
+      <button type="reset" class="btn" type="reset">إلغاء</button>
+    </div>
+    <p class="note">سوف تُحفظ البيانات والملفات على الخادم.</p>
+  </form>
 </div>
 
 <script>
-// إشعار
 function showToast(msg){
-    const toast = document.getElementById('toast');
-    toast.textContent = msg;
-    toast.classList.add('show');
-    setTimeout(()=>toast.classList.remove('show'),2500);
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.style.display='block';
+  setTimeout(()=>t.style.display='none',3000);
 }
-
-// إظهار النموذج عند الضغط على زرك الخاص
-const myButton = document.querySelector('a.quick-link'); // زر "تقديم طلب جديد" عندك
-const form = document.getElementById('registrationForm');
-myButton.addEventListener('click', e=>{
-    e.preventDefault();
-    form.style.display='block';
-    form.scrollIntoView({behavior:'smooth'});
-});
-
-// إخفاء النموذج عند الضغط خارج النموذج أو الزر
-document.addEventListener('click', e=>{
-    if(!form.contains(e.target) && e.target!==myButton){
-        form.style.display='none';
-    }
-});
-
-// إشعار عند نجاح الإرسال (PHP)
-<?php if(isset($success) && $success): ?>
-showToast('✅ تم إرسال الطلب بنجاح!');
-<?php endif; ?>
-
-// نسخ رقم الحساب مع إشعار
-document.getElementById('copyAccountBtn').addEventListener('click', ()=>{
-    const text = 'SA1980000857608010276380';
-    navigator.clipboard.writeText(text).then(()=>{
-        showToast('✅ تم نسخ رقم الحساب بنجاح');
-    }).catch(()=>{
-        showToast('⚠️ فشل النسخ، انسخه يدوياً');
-    });
-});
+function showForm(e){
+  if(e) e.preventDefault();
+  document.getElementById('formWrap').style.display='block';
+  window.scrollTo({top:document.getElementById('formWrap').offsetTop-20, behavior:'smooth'});
+}
 </script>
+
 </body>
 </html>
 </body>
